@@ -5,7 +5,10 @@ import WithClient from './utils/WithClient';
 import RegisterModal from './components/modals/RegisterModal';
 import LoginModal from './components/modals/loginModal';
 
+import ToastProvider from '@/app/providers/ToastProvider';
+
 import './globals.css';
+
 export const metadata = {
 	title: 'Next Airbnb',
 	description: 'NextJS Airbnb clone'
@@ -15,14 +18,19 @@ const font = Nunito({
 	subsets: ['latin']
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+	children
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<html lang='en'>
 			<body className={font.className}>
 				<WithClient>
+					<ToastProvider />
 					<Navbar />
-          <LoginModal />
-          <RegisterModal />
+					<LoginModal />
+					<RegisterModal />
 				</WithClient>
 				{children}
 			</body>

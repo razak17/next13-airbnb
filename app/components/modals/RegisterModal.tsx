@@ -4,6 +4,7 @@ import axios from 'axios';
 import { signIn } from 'next-auth/react';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -43,11 +44,12 @@ const RegisterModal = () => {
 		axios
 			.post('/api/register', data)
 			.then(() => {
+				toast.success('Registered!');
 				registerModal.onClose();
 				loginModal.onOpen();
 			})
 			.catch((error) => {
-				console.log(error);
+				toast.error(error.message);
 			})
 			.finally(() => {
 				setIsLoading(false);

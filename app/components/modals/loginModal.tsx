@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -42,12 +43,13 @@ const LoginModal = () => {
 			setIsLoading(false);
 
 			if (callback?.ok) {
+				toast.success('Logged in');
 				router.refresh();
 				loginModal.onClose();
 			}
 
 			if (callback?.error) {
-				console.log(callback.error);
+				toast.success('Logged in');
 			}
 		});
 	};
