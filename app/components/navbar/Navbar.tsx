@@ -1,5 +1,3 @@
-'use client';
-
 import Wrapper from '../Wrapper';
 import Logo from './Logo';
 import Search from './Search';
