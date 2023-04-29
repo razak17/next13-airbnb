@@ -1,7 +1,7 @@
-import Wrapper from '../Wrapper';
-import Logo from './Logo';
-import Search from './Search';
-import UserMenu from './UserMenu';
+import Search from './search';
+import Logo from './ui/logo';
+import Wrapper from './ui/wrapper';
+import UserMenu from './user-menu';
 
 const Navbar = () => {
 	return (
@@ -15,9 +15,9 @@ const Navbar = () => {
 				<Wrapper>
 					<div
 						className='
-            flex 
-            flex-row 
-            items-center 
+            flex
+            flex-row
+            items-center
             justify-between
             gap-3
             md:gap-0

@@ -8,13 +8,12 @@ import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 
-import useLoginModal from '@/app/hooks/useLoginModal';
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-
-import Button from '../Button';
-import Heading from '../Heading';
-import Input from '../inputs/Input';
-import Modal from './Modal';
+import useLoginModal from '@/hooks/use-login-modal';
+import useRegisterModal from '@/hooks/use-register-modal';
+import Button from './ui/button';
+import Heading from './ui/heading';
+import Input from './ui/input';
+import Modal from './ui/modal';
 
 const RegisterModal = () => {
 	const registerModal = useRegisterModal();
@@ -104,9 +103,9 @@ const RegisterModal = () => {
 			/>
 			<div
 				className='
-          text-neutral-500 
-          text-center 
-          mt-4 
+          text-neutral-500
+          text-center
+          mt-4
           font-light
         '
 			>
@@ -116,7 +115,7 @@ const RegisterModal = () => {
 						onClick={onToggle}
 						className='
               text-neutral-800
-              cursor-pointer 
+              cursor-pointer
               hover:underline
             '
 					>

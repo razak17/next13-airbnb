@@ -3,11 +3,10 @@
 import { useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 
-import useLoginModal from '@/app/hooks/useLoginModal';
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-
-import Avatar from '../Avatar';
-import MenuItem from './MenuItem';
+import useLoginModal from '@/hooks/use-login-modal';
+import useRegisterModal from '@/hooks/use-register-modal';
+import Avatar from './ui/avatar';
+import { MenuItem } from './ui/menubar';
 
 const UserMenu = () => {
 	const registerModal = useRegisterModal();
@@ -26,13 +25,13 @@ const UserMenu = () => {
 					className='
             hidden
             md:block
-            text-sm 
-            font-semibold 
-            py-3 
-            px-4 
-            rounded-full 
-            hover:bg-neutral-100 
-            transition 
+            text-sm
+            font-semibold
+            py-3
+            px-4
+            rounded-full
+            hover:bg-neutral-100
+            transition
             cursor-pointer
           '
 				>
@@ -44,15 +43,15 @@ const UserMenu = () => {
           p-4
           md:py-1
           md:px-2
-          border-[1px] 
-          border-neutral-200 
-          flex 
-          flex-row 
-          items-center 
-          gap-3 
-          rounded-full 
-          cursor-pointer 
-          hover:shadow-md 
+          border-[1px]
+          border-neutral-200
+          flex
+          flex-row
+          items-center
+          gap-3
+          rounded-full
+          cursor-pointer
+          hover:shadow-md
           transition
           '
 				>
@@ -66,15 +65,15 @@ const UserMenu = () => {
 			{isOpen && (
 				<div
 					className='
-            absolute 
-            rounded-xl 
+            absolute
+            rounded-xl
             shadow-md
             w-[40vw]
-            md:w-3/4 
-            bg-white 
-            overflow-hidden 
-            right-0 
-            top-12 
+            md:w-3/4
+            bg-white
+            overflow-hidden
+            right-0
+            top-12
             text-sm
           '
 				>

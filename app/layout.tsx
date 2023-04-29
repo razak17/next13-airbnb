@@ -1,17 +1,18 @@
 import { Nunito } from 'next/font/google';
-import Navbar from './components/navbar/Navbar';
-import WithClient from './utils/WithClient';
 
-import RegisterModal from './components/modals/RegisterModal';
-import LoginModal from './components/modals/loginModal';
-
-import ToastProvider from '@/app/providers/ToastProvider';
-
-import './globals.css';
+import LoginModal from '@/components/login-modal';
+import Navbar from '@/components/nav';
+import RegisterModal from '@/components/register-modal';
+import ToastProvider from '@/providers/toast-provider';
+import WithClient from '@/utils/with-client';
+import '@/styles/globals.css';
 
 export const metadata = {
 	title: 'Next Airbnb',
-	description: 'NextJS Airbnb clone'
+	description: 'NextJS Airbnb clone',
+	icons: {
+		icon: '/favicon.ico'
+	}
 };
 
 const font = Nunito({
