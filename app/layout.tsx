@@ -4,7 +4,7 @@ import LoginModal from '@/components/login-modal';
 import Navbar from '@/components/nav';
 import RegisterModal from '@/components/register-modal';
 import ToastProvider from '@/providers/toast-provider';
-import WithClient from '@/utils/with-client';
+import WithClient from '@/components/with-client';
 import '@/styles/globals.css';
 
 export const metadata = {
