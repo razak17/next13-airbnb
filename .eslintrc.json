@@ -1,32 +1,49 @@
 {
-	"extends": ["next", "next/core-web-vitals", "eslint:recommended", "prettier"],
-	"globals": {
-		"React": "readonly"
-	},
-	"plugins": ["react", "@typescript-eslint"],
-	"overrides": [
-		{
-			"files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
-			"rules": {}
-		}
-	],
-	"rules": {
-		"no-unused-vars": [
-			1,
-			{
-				"args": "after-used",
-				"argsIgnorePattern": "^_"
-			}
-		],
-		"no-shadow": "off",
-		"quotes": [1, "single"],
-		"max-len": [
-			1,
-			{
-				"code": 120
-			}
-		],
-		"semi": 1,
-		"object-curly-spacing": [1, "always"]
-	}
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": ["react", "@typescript-eslint", "tailwindcss"],
+  "rules": {
+    "semi": 1,
+    "@next/next/no-html-link-for-pages": "off",
+    "react/jsx-key": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "error",
+    "no-unused-vars": [
+      1,
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "quotes": [1, "single"],
+    "max-len": [
+      1,
+      {
+        "code": 120
+      }
+    ],
+    "object-curly-spacing": [1, "always"]
+  },
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn"],
+      "config": "tailwind.config.js"
+    },
+    "next": {
+      "rootDir": true
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ]
 }

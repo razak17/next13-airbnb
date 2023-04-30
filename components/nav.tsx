@@ -5,11 +5,11 @@ import UserMenu from './user-menu';
 
 const Navbar = () => {
 	return (
-		<div className='fixed w-full bg-white z-10 shadow-sm'>
+		<div className='fixed z-10 w-full bg-white shadow-sm'>
 			<div
 				className='
-        py-4
         border-b-[1px]
+        py-4
         '
 			>
 				<Wrapper>
