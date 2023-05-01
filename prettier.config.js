@@ -32,9 +32,11 @@ module.exports = {
 	importOrderSortSpecifiers: true,
 	importOrderBuiltinModulesToTop: true,
 	importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-	importOrderTypeScriptVersion: '5.0.0',
 	importOrderMergeDuplicateImports: true,
 	importOrderCombineTypeAndValueImports: true,
-	// FIX: Plugins work in vscode but not in neovim. Update: works with prettierrd
-	plugins: [require('prettier-plugin-tailwindcss')],
+	// FIX: Plugins work in vscode but not in neovim (null-ls). Update: works with prettierrd (tailwind plugin only)
+	plugins: [
+		// '@ianvs/prettier-plugin-sort-imports',
+		require('prettier-plugin-tailwindcss'),
+	],
 };

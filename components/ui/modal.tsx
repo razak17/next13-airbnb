@@ -5,71 +5,71 @@ import { IoMdClose } from 'react-icons/io';
 import Button from './button';
 
 interface ModalProps {
-  isOpen?: boolean;
-  onClose: () => void;
-  onSubmit: () => void;
-  title?: string;
-  body?: React.ReactElement;
-  footer?: React.ReactElement;
-  actionLabel: string;
-  disabled?: boolean;
-  secondaryAction?: () => void;
-  secondaryActionLabel?: string;
+	isOpen?: boolean;
+	onClose: () => void;
+	onSubmit: () => void;
+	title?: string;
+	body?: React.ReactElement;
+	footer?: React.ReactElement;
+	actionLabel: string;
+	disabled?: boolean;
+	secondaryAction?: () => void;
+	secondaryActionLabel?: string;
 }
 
 const Modal = ({
-  isOpen,
-  onClose,
-  onSubmit,
-  title,
-  body,
-  actionLabel,
-  footer,
-  disabled,
-  secondaryAction,
-  secondaryActionLabel,
+	isOpen,
+	onClose,
+	onSubmit,
+	title,
+	body,
+	actionLabel,
+	footer,
+	disabled,
+	secondaryAction,
+	secondaryActionLabel,
 }: ModalProps) => {
-  const [showModal, setShowModal] = useState(isOpen);
+	const [showModal, setShowModal] = useState(isOpen);
 
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
+	useEffect(() => {
+		setShowModal(isOpen);
+	}, [isOpen]);
 
-  const handleClose = useCallback(() => {
-    if (disabled) {
-      return;
-    }
+	const handleClose = useCallback(() => {
+		if (disabled) {
+			return;
+		}
 
-    setShowModal(false);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  }, [disabled, onClose]);
+		setShowModal(false);
+		setTimeout(() => {
+			onClose();
+		}, 300);
+	}, [disabled, onClose]);
 
-  const handleSubmit = useCallback(() => {
-    if (disabled) {
-      return;
-    }
+	const handleSubmit = useCallback(() => {
+		if (disabled) {
+			return;
+		}
 
-    onSubmit();
-  }, [onSubmit, disabled]);
+		onSubmit();
+	}, [onSubmit, disabled]);
 
-  const handleSecondaryAction = useCallback(() => {
-    if (disabled || !secondaryAction) {
-      return;
-    }
+	const handleSecondaryAction = useCallback(() => {
+		if (disabled || !secondaryAction) {
+			return;
+		}
 
-    secondaryAction();
-  }, [secondaryAction, disabled]);
+		secondaryAction();
+	}, [secondaryAction, disabled]);
 
-  if (!isOpen) {
-    return null;
-  }
+	if (!isOpen) {
+		return null;
+	}
 
-  return (
-    <>
-      <div
-        className="
+	return (
+		<>
+			<div
+				className='
           fixed
           inset-0
           z-50
@@ -81,10 +81,10 @@ const Modal = ({
           bg-neutral-800/70
           outline-none
           focus:outline-none
-        "
-      >
-        <div
-          className="
+        '
+			>
+				<div
+					className='
           relative
           mx-auto
           my-6
@@ -95,20 +95,20 @@ const Modal = ({
           lg:h-auto
           lg:w-3/6
           xl:w-2/5
-          "
-        >
-          {/*content*/}
-          <div
-            className={`
+          '
+				>
+					{/*content*/}
+					<div
+						className={`
             translate
             h-full
             duration-300
             ${showModal ? 'translate-y-0' : 'translate-y-full'}
             ${showModal ? 'opacity-100' : 'opacity-0'}
           `}
-          >
-            <div
-              className="
+					>
+						<div
+							className='
               translate
               relative
               flex
@@ -123,11 +123,11 @@ const Modal = ({
               focus:outline-none
               md:h-auto
               lg:h-auto
-            "
-            >
-              {/*header*/}
-              <div
-                className="
+            '
+						>
+							{/*header*/}
+							<div
+								className='
                 relative
                 flex
                 items-center
@@ -135,58 +135,58 @@ const Modal = ({
                 rounded-t
                 border-b-[1px]
                 p-6
-                "
-              >
-                <button
-                  className="
+                '
+							>
+								<button
+									className='
                     absolute
                     left-9
                     border-0
                     p-1
                     transition
                     hover:opacity-70
-                  "
-                  onClick={handleClose}
-                >
-                  <IoMdClose size={18} />
-                </button>
-                <div className="text-lg font-semibold">{title}</div>
-              </div>
-              {/*body*/}
-              <div className="relative flex-auto p-6">{body}</div>
-              {/*footer*/}
-              <div className="flex flex-col gap-2 p-6">
-                <div
-                  className="
+                  '
+									onClick={handleClose}
+								>
+									<IoMdClose size={18} />
+								</button>
+								<div className='text-lg font-semibold'>{title}</div>
+							</div>
+							{/*body*/}
+							<div className='relative flex-auto p-6'>{body}</div>
+							{/*footer*/}
+							<div className='flex flex-col gap-2 p-6'>
+								<div
+									className='
                     flex
                     w-full
                     flex-row
                     items-center
                     gap-4
-                  "
-                >
-                  {secondaryAction && secondaryActionLabel && (
-                    <Button
-                      disabled={disabled}
-                      label={secondaryActionLabel}
-                      onClick={handleSecondaryAction}
-                      outline
-                    />
-                  )}
-                  <Button
-                    disabled={disabled}
-                    label={actionLabel}
-                    onClick={handleSubmit}
-                  />
-                </div>
-                {footer}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+                  '
+								>
+									{secondaryAction && secondaryActionLabel && (
+										<Button
+											disabled={disabled}
+											label={secondaryActionLabel}
+											onClick={handleSecondaryAction}
+											outline
+										/>
+									)}
+									<Button
+										disabled={disabled}
+										label={actionLabel}
+										onClick={handleSubmit}
+									/>
+								</div>
+								{footer}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default Modal;

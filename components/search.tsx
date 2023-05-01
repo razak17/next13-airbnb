@@ -6,10 +6,10 @@ import { differenceInDays } from 'date-fns';
 import { useMemo } from 'react';
 
 const Search = () => {
-  return (
-    <div
-      onClick={() => console.log('hello')}
-      className="
+	return (
+		<div
+			onClick={() => console.log('hello')}
+			className='
         w-full
         cursor-pointer
         rounded-full
@@ -19,27 +19,27 @@ const Search = () => {
         transition
         hover:shadow-md
         md:w-auto
-      "
-    >
-      <div
-        className="
+      '
+		>
+			<div
+				className='
           flex
           flex-row
           items-center
           justify-between
-        "
-      >
-        <div
-          className="
+        '
+			>
+				<div
+					className='
             px-6
             text-sm
             font-semibold
-          "
-        >
-          Anywhere
-        </div>
-        <div
-          className="
+          '
+				>
+					Anywhere
+				</div>
+				<div
+					className='
             hidden
             flex-1
             border-x-[1px]
@@ -48,12 +48,12 @@ const Search = () => {
             text-sm
             font-semibold
             sm:block
-          "
-        >
-          Any Week
-        </div>
-        <div
-          className="
+          '
+				>
+					Any Week
+				</div>
+				<div
+					className='
             flex
             flex-row
             items-center
@@ -62,23 +62,23 @@ const Search = () => {
             pr-2
             text-sm
             text-gray-600
-          "
-        >
-          <div className="hidden sm:block">Add Guest</div>
-          <div
-            className="
+          '
+				>
+					<div className='hidden sm:block'>Add Guest</div>
+					<div
+						className='
               rounded-full
               bg-rose-500
               p-2
               text-white
-            "
-          >
-            <BiSearch size={18} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+            '
+					>
+						<BiSearch size={18} />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Search;

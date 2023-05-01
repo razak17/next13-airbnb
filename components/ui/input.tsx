@@ -4,46 +4,46 @@ import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import { BiDollar } from 'react-icons/bi';
 
 interface InputProps {
-  id: string;
-  label: string;
-  type?: string;
-  disabled?: boolean;
-  formatPrice?: boolean;
-  required?: boolean;
-  register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+	id: string;
+	label: string;
+	type?: string;
+	disabled?: boolean;
+	formatPrice?: boolean;
+	required?: boolean;
+	register: UseFormRegister<FieldValues>;
+	errors: FieldErrors;
 }
 
 const Input = ({
-  id,
-  label,
-  type = 'text',
-  disabled,
-  formatPrice,
-  register,
-  required,
-  errors,
+	id,
+	label,
+	type = 'text',
+	disabled,
+	formatPrice,
+	register,
+	required,
+	errors,
 }: InputProps) => {
-  return (
-    <div className="relative w-full">
-      {formatPrice && (
-        <BiDollar
-          size={24}
-          className="
+	return (
+		<div className='relative w-full'>
+			{formatPrice && (
+				<BiDollar
+					size={24}
+					className='
             absolute
             left-2
             top-5
             text-neutral-700
-          "
-        />
-      )}
-      <input
-        id={id}
-        disabled={disabled}
-        {...register(id, { required })}
-        placeholder=" "
-        type={type}
-        className={`
+          '
+				/>
+			)}
+			<input
+				id={id}
+				disabled={disabled}
+				{...register(id, { required })}
+				placeholder=' '
+				type={type}
+				className={`
           peer
           w-full
           rounded-md
@@ -60,9 +60,9 @@ const Input = ({
           ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
           ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
         `}
-      />
-      <label
-        className={`
+			/>
+			<label
+				className={`
           text-m
           absolute
           top-5
@@ -78,11 +78,11 @@ const Input = ({
           peer-focus:scale-75
           ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
         `}
-      >
-        {label}
-      </label>
-    </div>
-  );
+			>
+				{label}
+			</label>
+		</div>
+	);
 };
 
 export default Input;

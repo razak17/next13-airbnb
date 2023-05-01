@@ -8,33 +8,33 @@ import WithClient from '@/components/with-client';
 import '@/styles/globals.css';
 
 export const metadata = {
-  title: 'Next Airbnb',
-  description: 'NextJS Airbnb clone',
-  icons: {
-    icon: '/favicon.ico',
-  },
+	title: 'Next Airbnb',
+	description: 'NextJS Airbnb clone',
+	icons: {
+		icon: '/favicon.ico',
+	},
 };
 
 const font = Nunito({
-  subsets: ['latin'],
+	subsets: ['latin'],
 });
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className={font.className}>
-        <WithClient>
-          <ToastProvider />
-          <Navbar />
-          <LoginModal />
-          <RegisterModal />
-        </WithClient>
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang='en'>
+			<body className={font.className}>
+				<WithClient>
+					<ToastProvider />
+					<Navbar />
+					<LoginModal />
+					<RegisterModal />
+				</WithClient>
+				{children}
+			</body>
+		</html>
+	);
 }

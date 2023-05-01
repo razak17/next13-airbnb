@@ -10,20 +10,20 @@ import Avatar from './ui/avatar';
 import { MenuItem } from './ui/menubar';
 
 const UserMenu = () => {
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
-  const [isOpen, setIsOpen] = useState(false);
+	const registerModal = useRegisterModal();
+	const loginModal = useLoginModal();
+	const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
+	const toggleOpen = useCallback(() => {
+		setIsOpen((value) => !value);
+	}, []);
 
-  return (
-    <div className="relative">
-      <div className="flex flex-row items-center gap-3">
-        <div
-          onClick={() => console.log('hello')}
-          className="
+	return (
+		<div className='relative'>
+			<div className='flex flex-row items-center gap-3'>
+				<div
+					onClick={() => console.log('hello')}
+					className='
             hidden
             cursor-pointer
             rounded-full
@@ -34,13 +34,13 @@ const UserMenu = () => {
             transition
             hover:bg-neutral-100
             md:block
-          "
-        >
-          Airbnb your home
-        </div>
-        <div
-          onClick={toggleOpen}
-          className="
+          '
+				>
+					Airbnb your home
+				</div>
+				<div
+					onClick={toggleOpen}
+					className='
           flex
           cursor-pointer
           flex-row
@@ -54,18 +54,18 @@ const UserMenu = () => {
           hover:shadow-md
           md:px-2
           md:py-1
-          "
-        >
-          <AiOutlineMenu />
-          <div className="hidden md:block">
-            <Avatar />
-          </div>
-        </div>
-      </div>
+          '
+				>
+					<AiOutlineMenu />
+					<div className='hidden md:block'>
+						<Avatar />
+					</div>
+				</div>
+			</div>
 
-      {isOpen && (
-        <div
-          className="
+			{isOpen && (
+				<div
+					className='
             absolute
             right-0
             top-12
@@ -76,18 +76,18 @@ const UserMenu = () => {
             text-sm
             shadow-md
             md:w-3/4
-          "
-        >
-          <div className="flex cursor-pointer flex-col">
-            <>
-              <MenuItem label="Login" onClick={loginModal.onOpen} />
-              <MenuItem label="Sign up" onClick={registerModal.onOpen} />
-            </>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+          '
+				>
+					<div className='flex cursor-pointer flex-col'>
+						<>
+							<MenuItem label='Login' onClick={loginModal.onOpen} />
+							<MenuItem label='Sign up' onClick={registerModal.onOpen} />
+						</>
+					</div>
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default UserMenu;
