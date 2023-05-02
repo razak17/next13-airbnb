@@ -29,11 +29,11 @@ export default function RootLayout({
 			<body className={font.className}>
 				<WithClient>
 					<ToastProvider />
-					<Navbar />
 					<LoginModal />
 					<RegisterModal />
+					<Navbar />
 				</WithClient>
-				{children}
+				<div className='pb-20 pt-28'>{children}</div>
 			</body>
 		</html>
 	);

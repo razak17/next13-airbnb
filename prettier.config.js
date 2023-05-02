@@ -36,7 +36,7 @@ module.exports = {
 	importOrderCombineTypeAndValueImports: true,
 	// FIX: Plugins work in vscode but not in neovim (null-ls). Update: works with prettierrd (tailwind plugin only)
 	plugins: [
-		// '@ianvs/prettier-plugin-sort-imports',
+		'@ianvs/prettier-plugin-sort-imports',
 		require('prettier-plugin-tailwindcss'),
 	],
 };
