@@ -6,10 +6,10 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-    "turbo": "next dev --turbo",
-    "lint": "next lint",
-    "preview": "next build && next start",
-    "postinstall": "prisma generate",
+		"turbo": "next dev --turbo",
+		"lint": "next lint",
+		"preview": "next build && next start",
+		"postinstall": "prisma generate",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
 	},
 	"dependencies": {
@@ -23,6 +23,7 @@
 		"react-hook-form": "^7.43.9",
 		"react-hot-toast": "^2.4.0",
 		"react-icons": "^4.8.0",
+		"zod": "^3.21.4",
 		"zustand": "^4.3.7"
 	},
 	"devDependencies": {

@@ -132,7 +132,7 @@ const RegisterModal = () => {
 			disabled={isLoading}
 			isOpen={registerModal.isOpen}
 			title='Register'
-			actionLabel='Continue'
+			actionLabel='Register'
 			onClose={registerModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
