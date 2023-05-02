@@ -48,8 +48,8 @@ export const authOptions: AuthOptions = {
 				}
 
 				const isCorrectPassword = await argon2.verify(
-					credentials.password,
-					user.hashedPassword
+					user.hashedPassword,
+					credentials.password
 				);
 
 				if (!isCorrectPassword) {
