@@ -1,9 +1,15 @@
+import { AuthenticatedUser } from '@/lib/validations/user';
+
 import Search from './search';
 import Logo from './ui/logo';
 import Wrapper from './ui/wrapper';
 import UserMenu from './user-menu';
 
-const Navbar = () => {
+interface NavbarProps {
+	currentUser?: AuthenticatedUser | null;
+}
+
+const Navbar = ({ currentUser }: NavbarProps) => {
 	return (
 		<div className='fixed z-10 w-full bg-white shadow-sm'>
 			<div
@@ -25,7 +31,7 @@ const Navbar = () => {
 					>
 						<Logo />
 						<Search />
-						<UserMenu />
+						<UserMenu currentUser={currentUser} />
 					</div>
 				</Wrapper>
 			</div>

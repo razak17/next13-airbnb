@@ -1,8 +1,8 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
@@ -10,6 +10,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
+
 import Button from './ui/button';
 import Heading from './ui/heading';
 import Input from './ui/input';
@@ -48,7 +49,7 @@ const LoginModal = () => {
 			}
 
 			if (callback?.error) {
-				toast.success('Logged in');
+				toast.error(callback.error);
 			}
 		});
 	};
