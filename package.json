@@ -6,7 +6,10 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+    "turbo": "next dev --turbo",
+    "lint": "next lint",
+    "preview": "next build && next start",
+    "postinstall": "prisma generate",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
 	},
 	"dependencies": {
