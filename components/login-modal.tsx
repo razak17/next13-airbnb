@@ -2,12 +2,14 @@
 
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 
+import { loginFormSchema } from '@/lib/validations/auth';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
 
@@ -15,6 +17,8 @@ import Button from './ui/button';
 import Heading from './ui/heading';
 import Input from './ui/input';
 import Modal from './ui/modal';
+
+type FormData = z.infer<typeof loginFormSchema>;
 
 const LoginModal = () => {
 	const router = useRouter();
@@ -26,11 +30,8 @@ const LoginModal = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FieldValues>({
-		defaultValues: {
-			email: '',
-			password: '',
-		},
+	} = useForm<FormData>({
+		resolver: zodResolver(loginFormSchema),
 	});
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -66,18 +67,16 @@ const LoginModal = () => {
 				id='email'
 				label='Email'
 				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
+				errors={errors['email']}
+				{...register('email')}
 			/>
 			<Input
 				id='password'
 				label='Password'
 				type='password'
 				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
+				errors={errors['password']}
+				{...register('password')}
 			/>
 		</div>
 	);

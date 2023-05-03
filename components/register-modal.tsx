@@ -3,17 +3,21 @@
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
 import { useCallback, useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { AiFillGithub } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
+import * as z from 'zod';
 
+import { registerFormSchema } from '@/lib/validations/auth';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
 import Button from './ui/button';
 import Heading from './ui/heading';
 import Input from './ui/input';
 import Modal from './ui/modal';
+
+type FormData = z.infer<typeof registerFormSchema>;
 
 const RegisterModal = () => {
 	const registerModal = useRegisterModal();
@@ -24,12 +28,8 @@ const RegisterModal = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FieldValues>({
-		defaultValues: {
-			name: '',
-			email: '',
-			password: '',
-		},
+	} = useForm<FormData>({
+		resolver: zodResolver(registerFormSchema),
 	});
 
 	const onToggle = useCallback(() => {
@@ -37,7 +37,7 @@ const RegisterModal = () => {
 		loginModal.onOpen();
 	}, [registerModal, loginModal]);
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+	const onSubmit = (data: FormData) => {
 		setIsLoading(true);
 
 		axios
@@ -62,26 +62,23 @@ const RegisterModal = () => {
 				id='email'
 				label='Email'
 				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
+				errors={errors['email']}
+				{...register('email')}
 			/>
 			<Input
 				id='name'
 				label='Name'
 				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
+				errors={errors['name']}
+				{...register('name')}
 			/>
 			<Input
 				id='password'
 				label='Password'
 				type='password'
 				disabled={isLoading}
-				register={register}
-				errors={errors}
-				required
+				errors={errors['password']}
+				{...register('password')}
 			/>
 		</div>
 	);

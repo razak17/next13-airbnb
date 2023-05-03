@@ -1,18 +1,12 @@
 import { NextResponse } from 'next/server';
 import argon2 from 'argon2';
-import { z } from 'zod';
 
 import { db } from '@/lib/db';
-
-const registerSchema = z.object({
-	name: z.string().min(3).max(32),
-	email: z.string().email(),
-	password: z.string().min(8),
-});
+import { registerFormSchema } from '@/lib/validations/auth';
 
 export async function POST(req: Request) {
 	const json = await req.json();
-	const body = registerSchema.parse(json);
+	const body = registerFormSchema.parse(json);
 
 	const hashedPassword = await argon2.hash(body.password);
 
