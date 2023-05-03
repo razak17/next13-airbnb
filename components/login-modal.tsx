@@ -6,17 +6,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { AiFillGithub } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
+import * as z from 'zod';
 
 import { loginFormSchema } from '@/lib/validations/auth';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
 
-import Button from './ui/button';
 import Heading from './ui/heading';
 import Input from './ui/input';
 import Modal from './ui/modal';
+import { UserAuthModalFooter } from './user-auth-modal';
 
 type FormData = z.infer<typeof loginFormSchema>;
 
@@ -81,43 +80,6 @@ const LoginModal = () => {
 		</div>
 	);
 
-	const footerContent = (
-		<div className='mt-3 flex flex-col gap-4'>
-			<hr />
-			<Button
-				outline
-				label='Continue with Google'
-				icon={FcGoogle}
-				onClick={() => signIn('google')}
-			/>
-			<Button
-				outline
-				label='Continue with Github'
-				icon={AiFillGithub}
-				onClick={() => signIn('github')}
-			/>
-			<div
-				className='
-      mt-4 text-center font-light text-neutral-500'
-			>
-				<p>
-					First time using Airbnb?
-					<span
-						onClick={onToggle}
-						className='
-              cursor-pointer
-              text-neutral-800
-              hover:underline
-            '
-					>
-						{' '}
-						Create an account
-					</span>
-				</p>
-			</div>
-		</div>
-	);
-
 	return (
 		<Modal
 			disabled={isLoading}
@@ -127,7 +89,13 @@ const LoginModal = () => {
 			onClose={loginModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
-			footer={footerContent}
+			footer={
+				<UserAuthModalFooter
+					isLoading={isLoading}
+					setIsLoading={setIsLoading}
+					onToggle={onToggle}
+				/>
+			}
 		/>
 	);
 };

@@ -1,7 +1,5 @@
 'use client';
 
-import axios from 'axios';
-import { signIn } from 'next-auth/react';
 import { useCallback, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
@@ -12,10 +10,11 @@ import * as z from 'zod';
 import { registerFormSchema } from '@/lib/validations/auth';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
-import Button from './ui/button';
+
 import Heading from './ui/heading';
 import Input from './ui/input';
 import Modal from './ui/modal';
+import { UserAuthModalFooter } from './user-auth-modal';
 
 type FormData = z.infer<typeof registerFormSchema>;
 
@@ -83,47 +82,6 @@ const RegisterModal = () => {
 		</div>
 	);
 
-	const footerContent = (
-		<div className='mt-3 flex flex-col gap-4'>
-			<hr />
-			<Button
-				outline
-				label='Continue with Google'
-				icon={FcGoogle}
-				onClick={() => signIn('google')}
-			/>
-			<Button
-				outline
-				label='Continue with Github'
-				icon={AiFillGithub}
-				onClick={() => signIn('github')}
-			/>
-			<div
-				className='
-          mt-4
-          text-center
-          font-light
-          text-neutral-500
-        '
-			>
-				<p>
-					Already have an account?
-					<span
-						onClick={onToggle}
-						className='
-              cursor-pointer
-              text-neutral-800
-              hover:underline
-            '
-					>
-						{' '}
-						Log in
-					</span>
-				</p>
-			</div>
-		</div>
-	);
-
 	return (
 		<Modal
 			disabled={isLoading}
@@ -133,7 +91,14 @@ const RegisterModal = () => {
 			onClose={registerModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
-			footer={footerContent}
+			footer={
+				<UserAuthModalFooter
+					register
+					isLoading={isLoading}
+					setIsLoading={setIsLoading}
+					onToggle={onToggle}
+				/>
+			}
 		/>
 	);
 };
