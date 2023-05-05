@@ -16,7 +16,7 @@ import Input from './ui/input';
 import Modal from './ui/modal';
 import { UserAuthModalFooter } from './user-auth-modal';
 
-type FormData = z.infer<typeof registerFormSchema>;
+type RegisterFormData = z.infer<typeof registerFormSchema>;
 
 const RegisterModal = () => {
 	const registerModal = useRegisterModal();
@@ -27,7 +27,7 @@ const RegisterModal = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<RegisterFormData>({
 		resolver: zodResolver(registerFormSchema),
 	});
 
@@ -36,7 +36,7 @@ const RegisterModal = () => {
 		loginModal.onOpen();
 	}, [registerModal, loginModal]);
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: RegisterFormData) => {
 		setIsLoading(true);
 
 		axios

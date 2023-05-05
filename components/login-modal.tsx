@@ -17,7 +17,7 @@ import Input from './ui/input';
 import Modal from './ui/modal';
 import { UserAuthModalFooter } from './user-auth-modal';
 
-type FormData = z.infer<typeof loginFormSchema>;
+type LoginFormData = z.infer<typeof loginFormSchema>;
 
 const LoginModal = () => {
 	const router = useRouter();
@@ -29,9 +29,14 @@ const LoginModal = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<LoginFormData>({
 		resolver: zodResolver(loginFormSchema),
 	});
+
+	const onToggle = useCallback(() => {
+		loginModal.onClose();
+		registerModal.onOpen();
+	}, [loginModal, registerModal]);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		setIsLoading(true);
@@ -53,11 +58,6 @@ const LoginModal = () => {
 			}
 		});
 	};
-
-	const onToggle = useCallback(() => {
-		loginModal.onClose();
-		registerModal.onOpen();
-	}, [loginModal, registerModal]);
 
 	const bodyContent = (
 		<div className='flex flex-col gap-4'>

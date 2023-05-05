@@ -68,7 +68,6 @@ const UserAuthModalFooter = ({
               hover:underline
             '
 					>
-						{' '}
 						{register ? 'Log in' : 'Create an account'}
 					</span>
 				</p>
