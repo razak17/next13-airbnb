@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Nunito } from 'next/font/google';
 import ToastProvider from '@/providers/toast-provider';
 

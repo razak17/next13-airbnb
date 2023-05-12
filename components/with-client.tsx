@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 const WithClient = ({ children }: { children: React.ReactNode }) => {
 	const [hasMounted, setHasMounted] = useState(false);

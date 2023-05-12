@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { IconType } from 'react-icons';
 
 interface ButtonProps {

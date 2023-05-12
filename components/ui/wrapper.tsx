@@ -1,5 +1,7 @@
 'use client';
 
+import * as React from 'react';
+
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div
