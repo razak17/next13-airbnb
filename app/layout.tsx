@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Nunito } from 'next/font/google';
 import ToastProvider from '@/providers/toast-provider';
 
+import { getCurrentUser } from '@/lib/session';
+import UseClient from '@/hooks/use-client';
 import LoginModal from '@/components/login-modal';
 import Navbar from '@/components/nav';
 import RegisterModal from '@/components/register-modal';
-import WithClient from '@/components/with-client';
 
 import '@/styles/globals.css';
-import { getCurrentUser } from '@/lib/session';
 
 export const metadata = {
 	title: 'Next Airbnb',
@@ -32,12 +32,12 @@ export default async function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={font.className}>
-				<WithClient>
+				<UseClient>
 					<ToastProvider />
 					<LoginModal />
 					<RegisterModal />
 					<Navbar currentUser={currentUser} />
-				</WithClient>
+				</UseClient>
 				<div className='pb-20 pt-28'>{children}</div>
 			</body>
 		</html>

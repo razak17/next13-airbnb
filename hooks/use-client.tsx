@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 
-const WithClient = ({ children }: { children: React.ReactNode }) => {
+const UseClient = ({ children }: { children: React.ReactNode }) => {
 	const [hasMounted, setHasMounted] = useState(false);
 
 	useEffect(() => {
@@ -15,4 +15,4 @@ const WithClient = ({ children }: { children: React.ReactNode }) => {
 	return <>{children}</>;
 };
 
-export default WithClient;
+export default UseClient;
