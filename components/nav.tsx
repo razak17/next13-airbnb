@@ -1,4 +1,4 @@
-import { AuthenticatedUser } from '@/lib/validations/user';
+import { AuthenticatedUser } from '@/types';
 
 import Search from './search';
 import Logo from './ui/logo';

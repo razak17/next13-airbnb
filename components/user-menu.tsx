@@ -2,10 +2,10 @@
 
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { AuthenticatedUser } from '@/types';
 import { signOut } from 'next-auth/react';
 import { AiOutlineMenu } from 'react-icons/ai';
 
-import { AuthenticatedUser } from '@/lib/validations/user';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
 
