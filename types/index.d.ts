@@ -1,4 +1,5 @@
 import { User } from '@prisma/client';
+import { IconType } from 'react-icons';
 
 export type AuthenticatedUser = Omit<
 	User,
@@ -7,4 +8,10 @@ export type AuthenticatedUser = Omit<
 	createdAt: string;
 	updatedAt: string;
 	emailVerified: string | null;
+};
+
+export type CategoryIten = {
+	label: string;
+	icon: IconType;
+	description: string;
 };
