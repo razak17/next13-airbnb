@@ -28,7 +28,12 @@
 				"code": 120
 			}
 		],
-		"object-curly-spacing": [1, "always"]
+		"object-curly-spacing": [1, "always"],
+    "no-console": 1,
+    "no-debugger": 1,
+    "no-alert": 1,
+    "no-await-in-loop": 1,
+    "no-return-assign": 1
 	},
 	"settings": {
 		"tailwindcss": {
