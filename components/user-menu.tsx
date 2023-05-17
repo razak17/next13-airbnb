@@ -27,11 +27,19 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
 		setIsOpen((value) => !value);
 	}, []);
 
+	const onRent = useCallback(() => {
+		if (!currentUser) {
+			return loginModal.onOpen();
+		}
+
+		// TODO: Open rent modal
+	}, [loginModal, currentUser]);
+
 	return (
 		<div className='relative'>
 			<div className='flex flex-row items-center gap-3'>
 				<div
-					onClick={() => {}}
+					onClick={onRent}
 					className='
             hidden
             cursor-pointer
