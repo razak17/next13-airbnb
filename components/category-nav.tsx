@@ -4,10 +4,10 @@ import { usePathname, useSearchParams } from 'next/navigation';
 
 import { categories } from '@/config/categories';
 
-import CategoryItem from './category-item';
+import CategoryNavItem from './category-nav-item';
 import Wrapper from './ui/wrapper';
 
-const Categories = () => {
+const CategoryNav = () => {
 	const params = useSearchParams();
 	const category = params?.get('category');
 	const pathname = usePathname();
@@ -30,7 +30,7 @@ const Categories = () => {
         '
 			>
 				{categories.map((item) => (
-					<CategoryItem
+					<CategoryNavItem
 						key={item.label}
 						label={item.label}
 						icon={item.icon}
@@ -42,4 +42,4 @@ const Categories = () => {
 	);
 };
 
-export default Categories;
+export default CategoryNav;

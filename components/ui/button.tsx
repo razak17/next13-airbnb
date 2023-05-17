@@ -5,11 +5,12 @@ import { IconType } from 'react-icons';
 
 interface ButtonProps {
 	label: string;
-	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	disabled?: boolean;
 	outline?: boolean;
 	small?: boolean;
 	icon?: IconType;
+	// eslint-disable-next-line no-unused-vars
+	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({

@@ -1,6 +1,6 @@
 import { AuthenticatedUser } from '@/types';
 
-import Categories from './categories';
+import CategoryNav from './category-nav';
 import Search from './search';
 import Logo from './ui/logo';
 import Wrapper from './ui/wrapper';
@@ -36,7 +36,7 @@ const Navbar = ({ currentUser }: NavbarProps) => {
 					</div>
 				</Wrapper>
 			</div>
-			<Categories />
+			<CategoryNav />
 		</div>
 	);
 };

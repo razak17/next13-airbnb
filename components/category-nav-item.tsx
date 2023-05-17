@@ -5,13 +5,13 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 import { IconType } from 'react-icons';
 
-interface CategoryItemProps {
+interface CategoryNavItemProps {
 	icon: IconType;
 	label: string;
 	selected?: boolean;
 }
 
-const CategoryItem = ({ icon: Icon, label, selected }: CategoryItemProps) => {
+const CategoryNavItem = ({ icon: Icon, label, selected }: CategoryNavItemProps) => {
 	const router = useRouter();
 	const params = useSearchParams();
 
@@ -67,4 +67,4 @@ const CategoryItem = ({ icon: Icon, label, selected }: CategoryItemProps) => {
 	);
 };
 
-export default CategoryItem;
+export default CategoryNavItem;
