@@ -8,6 +8,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
+import useRentModal from '@/hooks/use-rent-modal';
 
 import Avatar from './ui/avatar';
 import { MenuItem } from './ui/menubar';
@@ -21,6 +22,8 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
 
 	const registerModal = useRegisterModal();
 	const loginModal = useLoginModal();
+	const rentModal = useRentModal();
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleOpen = useCallback(() => {
@@ -32,8 +35,8 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
 			return loginModal.onOpen();
 		}
 
-		// TODO: Open rent modal
-	}, [loginModal, currentUser]);
+		rentModal.onOpen();
+	}, [loginModal, rentModal, currentUser]);
 
 	return (
 		<div className='relative'>
@@ -114,7 +117,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
 									label='My properties'
 									onClick={() => router.push('/properties')}
 								/>
-								<MenuItem label='Airbnb your home' onClick={() => {}} />
+								<MenuItem label='Airbnb your home' onClick={rentModal.onOpen} />
 								<hr />
 								<MenuItem label='Logout' onClick={() => signOut()} />
 							</>

@@ -7,6 +7,7 @@ import UseClient from '@/hooks/use-client';
 import LoginModal from '@/components/login-modal';
 import Navbar from '@/components/nav';
 import RegisterModal from '@/components/register-modal';
+import RentModal from '@/components/rent-modal';
 
 import '@/styles/globals.css';
 
@@ -36,6 +37,7 @@ export default async function RootLayout({
 					<ToastProvider />
 					<LoginModal />
 					<RegisterModal />
+					<RentModal />
 					<Navbar currentUser={currentUser} />
 				</UseClient>
 				<div className='pb-20 pt-28'>{children}</div>
