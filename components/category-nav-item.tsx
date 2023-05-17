@@ -2,16 +2,21 @@
 
 import { useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Category } from '@/types';
 import qs from 'query-string';
 import { IconType } from 'react-icons';
 
 interface CategoryNavItemProps {
 	icon: IconType;
-	label: string;
+	label: Category;
 	selected?: boolean;
 }
 
-const CategoryNavItem = ({ icon: Icon, label, selected }: CategoryNavItemProps) => {
+const CategoryNavItem = ({
+	icon: Icon,
+	label,
+	selected,
+}: CategoryNavItemProps) => {
 	const router = useRouter();
 	const params = useSearchParams();
 

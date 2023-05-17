@@ -1,9 +1,16 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { Category } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
+import { categories } from '@/config/categories';
+import { rentFormSchema } from '@/lib/validations/auth';
 import useRentModal from '@/hooks/use-rent-modal';
 
+import RentCategoryItem from './rent-category-item';
 import Heading from './ui/heading';
 import Modal from './ui/modal';
 
@@ -16,13 +23,38 @@ enum STEPS {
 	DESCRIPTION = 4,
 	PRICE = 5,
 }
-
 /* eslint-enable no-unused-vars */
+
+type RentFormData = z.infer<typeof rentFormSchema>;
 
 const RentModal = () => {
 	const rentModal = useRentModal();
 	const [step, setStep] = useState(STEPS.CATEGORY);
 	const [isLoading, setIsLoading] = useState(false);
+
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		watch,
+		formState: { errors },
+		reset,
+	} = useForm<RentFormData>({
+		resolver: zodResolver(rentFormSchema),
+	});
+
+	const category = watch('category');
+
+	const customSetValue = (
+		id: keyof RentFormData,
+		value: string | string[] | number
+	) => {
+		setValue(id, value, {
+			shouldDirty: true,
+			shouldTouch: true,
+			shouldValidate: true,
+		});
+	};
 
 	const onBack = () => {
 		setStep((value) => value - 1);
@@ -64,6 +96,18 @@ const RentModal = () => {
           md:grid-cols-2
         '
 			>
+				{categories.map((item) => (
+					<div key={item.label} className='col-span-1'>
+						<RentCategoryItem
+							onClick={(category) => {
+								customSetValue('category', category);
+							}}
+							selected={category === item.label}
+							label={item.label}
+							icon={item.icon}
+						/>
+					</div>
+				))}
 			</div>
 		</div>
 	);

@@ -9,9 +9,28 @@ export type AuthenticatedUser = Omit<
 	updatedAt: string;
 	emailVerified: string | null;
 };
+export const CATEGORIES = [
+	'Beach',
+	'Windmills',
+	'Modern',
+	'Countryside',
+	'Pools',
+	'Islands',
+	'Lake',
+	'Skiing',
+	'Castles',
+	'Caves',
+	'Camping',
+	'Arctic',
+	'Desert',
+	'Barns',
+	'Lux',
+] as const;
+
+export type Category = (typeof CATEGORIES)[number];
 
 export type CategoryIten = {
-	label: string;
+	label: Category;
 	icon: IconType;
 	description: string;
 };
