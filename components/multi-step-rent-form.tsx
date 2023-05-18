@@ -1,5 +1,7 @@
 'use client';
 
+import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { Category } from '@/types';
 
 import { categories } from '@/config/categories';
@@ -61,6 +63,15 @@ const RentLocationStep = ({
 
 	const options = getAll();
 
+	const Map = useMemo(
+		() =>
+			dynamic(() => import('./map'), {
+				ssr: false,
+				// eslint-disable-next-line react-hooks/exhaustive-deps
+			}),
+		[location]
+	);
+
 	return (
 		<div className='flex flex-col gap-8'>
 			<Heading
@@ -73,6 +84,7 @@ const RentLocationStep = ({
 				options={options}
 				onChange={onChange}
 			/>
+			<Map center={location?.latlng} />
 		</div>
 	);
 };
