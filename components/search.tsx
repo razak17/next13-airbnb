@@ -5,7 +5,7 @@ import { BiSearch } from 'react-icons/bi';
 const Search = () => {
 	return (
 		<div
-			onClick={() => {}}
+			onClick={() => console.log('hello')}
 			className='
         w-full
         cursor-pointer

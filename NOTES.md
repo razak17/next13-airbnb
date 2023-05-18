@@ -39,6 +39,15 @@ pnpm add --save-dev prettier-plugin-tailwindcss
 
 pnpm add --save-dev @ianvs/prettier-plugin-sort-imports
 
+### Husky and Commitlint
+
+pnpm add --save-dev husky @commitlint/{config-conventional,cli}
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+npx husky install
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
+npx husky add .husky/pre-commit 'pnpm format && pnpm lint'
+npx husky add .husky/pre-push 'pnpm run build'
+
 # Issues
 
 Next 13.3.0 breaks next/image in docker. Downgrade to 13.2.4 or use 13.4.2 to fix.
