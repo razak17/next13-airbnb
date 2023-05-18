@@ -27,9 +27,9 @@ const CategoryNavItem = ({
 			currentQuery = qs.parse(params.toString());
 		}
 
-		const updatedQuery = {
+		const updatedQuery: { category?: Category } = {
 			...currentQuery,
-			category: label.toLowerCase() as any,
+			category: label.toLowerCase() as Category,
 		};
 
 		const category = params?.get('category');
