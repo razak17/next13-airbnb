@@ -1,11 +1,23 @@
 'use client';
 
-import Heading from './ui/heading';
-import { categories } from '@/config/categories';
-import RentCategoryItem from './rent-category-item';
-import { Category} from '@/types';
+import { Category } from '@/types';
 
-const RentCategoryStep = ({category, onClick}: {category: Category, onClick: (category: Category) => void}) => {
+import { categories } from '@/config/categories';
+import { Country } from '@/lib/validations/rent';
+import useCountries from '@/hooks/use-countries';
+
+import CountrySelect from './country-select';
+import RentCategoryItem from './rent-category-item';
+import Heading from './ui/heading';
+
+const RentCategoryStep = ({
+	category,
+	onClick,
+}: {
+	category: Category;
+	// eslint-disable-next-line no-unused-vars
+	onClick: (category: Category) => void;
+}) => {
 	return (
 		<div className='flex flex-col gap-8'>
 			<Heading
@@ -37,12 +49,29 @@ const RentCategoryStep = ({category, onClick}: {category: Category, onClick: (ca
 	);
 };
 
-const RentLocationStep = () => {
+const RentLocationStep = ({
+	location,
+	onChange,
+}: {
+	location?: Country;
+	// eslint-disable-next-line no-unused-vars
+	onChange: (value: Country) => void;
+}) => {
+	const { getAll } = useCountries();
+
+	const options = getAll();
+
 	return (
 		<div className='flex flex-col gap-8'>
 			<Heading
 				title='Where is your place located?'
 				subtitle='Help guests find you!'
+			/>
+			<CountrySelect
+				placeholder='Select Country'
+				value={location}
+				options={options}
+				onChange={onChange}
 			/>
 		</div>
 	);
@@ -60,31 +89,31 @@ const RentInfoStep = () => {
 };
 
 const RentImagesStep = () => {
-  return (
-    <div className="flex flex-col gap-8">
-      <Heading
-        title="Add a photo of your place"
-        subtitle="Show guests what your place looks like!"
-      />
-    </div>
-  )
-}
+	return (
+		<div className='flex flex-col gap-8'>
+			<Heading
+				title='Add a photo of your place'
+				subtitle='Show guests what your place looks like!'
+			/>
+		</div>
+	);
+};
 
 const RentDescriptionStep = () => {
-  return (
-    <div className="flex flex-col gap-8">
-      <Heading
-        title="How would you describe your place?"
-        subtitle="Short and sweet works best!"
-      />
-    </div>
-  )
-}
+	return (
+		<div className='flex flex-col gap-8'>
+			<Heading
+				title='How would you describe your place?'
+				subtitle='Short and sweet works best!'
+			/>
+		</div>
+	);
+};
 
 export {
-  RentCategoryStep,
-  RentLocationStep,
-  RentInfoStep,
-  RentImagesStep,
-  RentDescriptionStep
-}
+	RentCategoryStep,
+	RentLocationStep,
+	RentInfoStep,
+	RentImagesStep,
+	RentDescriptionStep,
+};

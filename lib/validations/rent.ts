@@ -1,9 +1,17 @@
-import * as z from 'zod';
 import { CATEGORIES } from '@/types';
+import * as z from 'zod';
+
+export const locationSchema = z.object({
+	flag: z.string(),
+	label: z.string(),
+	latlng: z.array(z.number()),
+	region: z.string(),
+	value: z.string(),
+});
 
 export const rentFormSchema = z.object({
 	category: z.enum(CATEGORIES),
-	location: z.array(z.string()).nullable(),
+	location: locationSchema,
 	guestCount: z.number(),
 	roomCount: z.number(),
 	bathroomCount: z.number(),
@@ -12,3 +20,5 @@ export const rentFormSchema = z.object({
 	title: z.string(),
 	description: z.string(),
 });
+
+export type Country = z.infer<typeof locationSchema>;
