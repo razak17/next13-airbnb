@@ -15,6 +15,7 @@ import {
 	RentImageUploadStep,
 	RentInfoStep,
 	RentLocationStep,
+    RentPriceStep,
 } from './multi-step-rent-form';
 import Modal from './ui/modal';
 
@@ -92,6 +93,12 @@ const RentModal = () => {
 			/>,
 			<RentDescriptionStep
 				key={4}
+				register={register}
+				isLoading={isLoading}
+				errors={errors}
+			/>,
+			<RentPriceStep
+				key={5}
 				register={register}
 				isLoading={isLoading}
 				errors={errors}
