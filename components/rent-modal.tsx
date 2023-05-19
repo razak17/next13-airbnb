@@ -18,7 +18,7 @@ import {
 } from './multi-step-rent-form';
 import Modal from './ui/modal';
 
-type RentFormData = z.infer<typeof rentFormSchema>;
+export type RentFormData = z.infer<typeof rentFormSchema>;
 
 const RentModal = () => {
 	const rentModal = useRentModal();
@@ -67,17 +67,17 @@ const RentModal = () => {
 	const { steps, currentStepIndex, isFirstStep, isLastStep, goBack, goToNext } =
 		useMultiStepRentForm([
 			<RentCategoryStep
-				key={1}
+				key={0}
 				category={category}
 				onClick={(category) => customSetValue('category', category)}
 			/>,
 			<RentLocationStep
-				key={2}
+				key={1}
 				location={location}
 				onChange={(value) => customSetValue('location', value)}
 			/>,
 			<RentInfoStep
-				key={3}
+				key={2}
 				guestCount={guestCount}
 				guestCountChange={(value) => customSetValue('guestCount', value)}
 				roomCount={roomCount}
@@ -86,11 +86,16 @@ const RentModal = () => {
 				bathroomCountChange={(value) => customSetValue('bathroomCount', value)}
 			/>,
 			<RentImageUploadStep
-				key={4}
+				key={3}
 				imageSrc={imageSrc}
 				onChange={(value) => customSetValue('imageSrc', value)}
 			/>,
-			<RentDescriptionStep key={5} />,
+			<RentDescriptionStep
+				key={4}
+				register={register}
+				isLoading={isLoading}
+				errors={errors}
+			/>,
 		]);
 
 	const actionLabel = useMemo(() => {

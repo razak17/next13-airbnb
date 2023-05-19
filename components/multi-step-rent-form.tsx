@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Category } from '@/types';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { categories } from '@/config/categories';
 import { Country } from '@/lib/validations/rent';
@@ -11,8 +12,10 @@ import useCountries from '@/hooks/use-countries';
 import CountrySelect from './country-select';
 import ImageUpload from './image-upload';
 import RentCategoryItem from './rent-category-item';
+import { RentFormData } from './rent-modal';
 import Counter from './ui/counter';
 import Heading from './ui/heading';
+import Input from './ui/input';
 
 const RentCategoryStep = ({
 	category,
@@ -154,12 +157,35 @@ const RentImageUploadStep = ({
 	);
 };
 
-const RentDescriptionStep = () => {
+const RentDescriptionStep = ({
+	register,
+	errors,
+	isLoading,
+}: {
+	register: UseFormRegister<RentFormData>;
+	errors: FieldErrors<RentFormData>;
+	isLoading: boolean;
+}) => {
 	return (
 		<div className='flex flex-col gap-8'>
 			<Heading
 				title='How would you describe your place?'
 				subtitle='Short and sweet works best!'
+			/>
+			<Input
+				id='title'
+				label='Title'
+				disabled={isLoading}
+				errors={errors['title']}
+				{...register('title')}
+			/>
+			<hr />
+			<Input
+				id='description'
+				label='Description'
+				disabled={isLoading}
+				errors={errors['description']}
+				{...register('description')}
 			/>
 		</div>
 	);
