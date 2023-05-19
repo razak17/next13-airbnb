@@ -9,6 +9,7 @@ import { Country } from '@/lib/validations/rent';
 import useCountries from '@/hooks/use-countries';
 
 import CountrySelect from './country-select';
+import ImageUpload from './image-upload';
 import RentCategoryItem from './rent-category-item';
 import Counter from './ui/counter';
 import Heading from './ui/heading';
@@ -148,6 +149,7 @@ const RentImageUploadStep = ({
 				title='Add a photo of your place'
 				subtitle='Show guests what your place looks like!'
 			/>
+			<ImageUpload value={imageSrc} onChange={onChange} />
 		</div>
 	);
 };

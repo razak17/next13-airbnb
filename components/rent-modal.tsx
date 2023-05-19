@@ -85,7 +85,11 @@ const RentModal = () => {
 				bathroomCount={bathroomCount}
 				bathroomCountChange={(value) => customSetValue('bathroomCount', value)}
 			/>,
-			<RentImageUploadStep key={4} />,
+			<RentImageUploadStep
+				key={4}
+				imageSrc={imageSrc}
+				onChange={(value) => customSetValue('imageSrc', value)}
+			/>,
 			<RentDescriptionStep key={5} />,
 		]);
 
