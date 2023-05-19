@@ -10,6 +10,7 @@ import useCountries from '@/hooks/use-countries';
 
 import CountrySelect from './country-select';
 import RentCategoryItem from './rent-category-item';
+import Counter from './ui/counter';
 import Heading from './ui/heading';
 
 const RentCategoryStep = ({
@@ -67,8 +68,8 @@ const RentLocationStep = ({
 		() =>
 			dynamic(() => import('./map'), {
 				ssr: false,
-				// eslint-disable-next-line react-hooks/exhaustive-deps
 			}),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[location]
 	);
 
@@ -89,18 +90,58 @@ const RentLocationStep = ({
 	);
 };
 
-const RentInfoStep = () => {
+const RentInfoStep = ({
+	guestCount,
+	guestCountChange,
+	roomCount,
+	roomCountChange,
+	bathroomCount,
+	bathroomCountChange,
+}: {
+	guestCount: number;
+	guestCountChange: (value: number) => void;
+	roomCount: number;
+	roomCountChange: (value: number) => void;
+	bathroomCount: number;
+	bathroomCountChange: (value: number) => void;
+}) => {
 	return (
 		<div className='flex flex-col gap-8'>
 			<Heading
 				title='Share some basics about your place'
 				subtitle='What amenitis do you have?'
 			/>
+			<Counter
+				onChange={guestCountChange}
+				value={guestCount}
+				title='Guests'
+				subtitle='How many guests do you allow?'
+			/>
+			<hr />
+			<Counter
+				onChange={roomCountChange}
+				value={roomCount}
+				title='Rooms'
+				subtitle='How many rooms do you have?'
+			/>
+			<hr />
+			<Counter
+				onChange={bathroomCountChange}
+				value={bathroomCount}
+				title='Bathrooms'
+				subtitle='How many bathrooms do you have?'
+			/>
 		</div>
 	);
 };
 
-const RentImagesStep = () => {
+const RentImageUploadStep = ({
+	imageSrc,
+	onChange,
+}: {
+	imageSrc: string;
+	onChange: (value: string) => void;
+}) => {
 	return (
 		<div className='flex flex-col gap-8'>
 			<Heading
@@ -126,6 +167,6 @@ export {
 	RentCategoryStep,
 	RentLocationStep,
 	RentInfoStep,
-	RentImagesStep,
+	RentImageUploadStep,
 	RentDescriptionStep,
 };

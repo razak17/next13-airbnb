@@ -12,7 +12,7 @@ import useRentModal from '@/hooks/use-rent-modal';
 import {
 	RentCategoryStep,
 	RentDescriptionStep,
-	RentImagesStep,
+	RentImageUploadStep,
 	RentInfoStep,
 	RentLocationStep,
 } from './multi-step-rent-form';
@@ -33,10 +33,25 @@ const RentModal = () => {
 		reset,
 	} = useForm<RentFormData>({
 		resolver: zodResolver(rentFormSchema),
+		defaultValues: {
+			category: 'Beach',
+			location: null,
+			guestCount: 1,
+			roomCount: 1,
+			bathroomCount: 1,
+			imageSrc: '',
+			price: 1,
+			title: '',
+			description: '',
+		},
 	});
 
 	const category = watch('category');
 	const location = watch('location');
+	const guestCount = watch('guestCount');
+	const roomCount = watch('roomCount');
+	const bathroomCount = watch('bathroomCount');
+	const imageSrc = watch('imageSrc');
 
 	const customSetValue = (
 		id: keyof RentFormData,
@@ -61,8 +76,16 @@ const RentModal = () => {
 				location={location}
 				onChange={(value) => customSetValue('location', value)}
 			/>,
-			<RentInfoStep key={3} />,
-			<RentImagesStep key={4} />,
+			<RentInfoStep
+				key={3}
+				guestCount={guestCount}
+				guestCountChange={(value) => customSetValue('guestCount', value)}
+				roomCount={roomCount}
+				roomCountChange={(value) => customSetValue('roomCount', value)}
+				bathroomCount={bathroomCount}
+				bathroomCountChange={(value) => customSetValue('bathroomCount', value)}
+			/>,
+			<RentImageUploadStep key={4} />,
 			<RentDescriptionStep key={5} />,
 		]);
 

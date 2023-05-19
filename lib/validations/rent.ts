@@ -7,7 +7,7 @@ export const locationSchema = z.object({
 	latlng: z.array(z.number()),
 	region: z.string(),
 	value: z.string(),
-});
+}).nullish();
 
 export const rentFormSchema = z.object({
 	category: z.enum(CATEGORIES),
