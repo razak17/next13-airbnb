@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import argon2 from 'argon2';
 
 import { db } from '@/lib/db';
@@ -18,5 +17,5 @@ export async function POST(req: Request) {
 		},
 	});
 
-	return NextResponse.json(user);
+	return new Response(JSON.stringify(user));
 }

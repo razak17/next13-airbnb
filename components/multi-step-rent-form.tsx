@@ -6,7 +6,7 @@ import { Category } from '@/types';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { categories } from '@/config/categories';
-import { Country } from '@/lib/validations/rent';
+import { Country } from '@/lib/validations/listing';
 import useCountries from '@/hooks/use-countries';
 
 import CountrySelect from './country-select';

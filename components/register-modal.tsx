@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 
@@ -38,7 +38,7 @@ const RegisterModal = () => {
 		loginModal.onOpen();
 	}, [registerModal, loginModal]);
 
-	const onSubmit = (data: RegisterFormData) => {
+	const onSubmit: SubmitHandler<RegisterFormData> = (data) => {
 		setIsLoading(true);
 
 		axios

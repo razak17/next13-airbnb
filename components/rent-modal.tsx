@@ -1,11 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import axios from 'axios';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { z } from 'zod';
 
-import { Country, rentFormSchema } from '@/lib/validations/rent';
+import { Country, listingFormSchema } from '@/lib/validations/listing';
 import useMultiStepRentForm, { STEPS } from '@/hooks/use-multi-step-rent-form';
 import useRentModal from '@/hooks/use-rent-modal';
 
@@ -19,9 +22,10 @@ import {
 } from './multi-step-rent-form';
 import Modal from './ui/modal';
 
-export type RentFormData = z.infer<typeof rentFormSchema>;
+export type RentFormData = z.infer<typeof listingFormSchema>;
 
 const RentModal = () => {
+	const router = useRouter();
 	const rentModal = useRentModal();
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +37,7 @@ const RentModal = () => {
 		formState: { errors },
 		reset,
 	} = useForm<RentFormData>({
-		resolver: zodResolver(rentFormSchema),
+		resolver: zodResolver(listingFormSchema),
 		defaultValues: {
 			category: 'Beach',
 			location: null,
@@ -41,7 +45,7 @@ const RentModal = () => {
 			roomCount: 1,
 			bathroomCount: 1,
 			imageSrc: '',
-			price: 1,
+			price: '1',
 			title: '',
 			description: '',
 		},
@@ -72,6 +76,7 @@ const RentModal = () => {
 		currentStepIndex,
 		isFirstStep,
 		isLastStep,
+		goTo,
 		goBack,
 		goToNext,
 	} = useMultiStepRentForm([
@@ -140,8 +145,24 @@ const RentModal = () => {
 		}
 	}, [currentStepIndex, location, imageSrc, title, description]);
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		if (!isLastStep) return goToNext();
+	const onSubmit: SubmitHandler<RentFormData> = (data) => {
+		setIsLoading(true);
+
+		axios
+			.post('/api/listings', data)
+			.then(() => {
+				toast.success('Listing created!');
+				router.refresh();
+				reset();
+				goTo(STEPS.CATEGORY);
+				rentModal.onClose();
+			})
+			.catch((error) => {
+				toast.error(error.message);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
 	};
 
 	return (

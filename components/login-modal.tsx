@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 
@@ -40,7 +40,7 @@ const LoginModal = () => {
 		registerModal.onOpen();
 	}, [loginModal, registerModal]);
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+	const onSubmit: SubmitHandler<LoginFormData> = (data) => {
 		setIsLoading(true);
 
 		signIn('credentials', {

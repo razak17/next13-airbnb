@@ -2,7 +2,7 @@
 
 import { default as ReactSelect } from 'react-select';
 
-import { Country } from '@/lib/validations/rent';
+import { Country } from '@/lib/validations/listing';
 
 interface CountrySelectProps {
 	options: Country[];

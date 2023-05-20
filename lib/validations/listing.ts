@@ -1,7 +1,7 @@
 import { CATEGORIES } from '@/types';
 import * as z from 'zod';
 
-export const locationSchema = z
+const locationSchema = z
 	.object({
 		flag: z.string(),
 		label: z.string(),
@@ -11,14 +11,14 @@ export const locationSchema = z
 	})
 	.nullish();
 
-export const rentFormSchema = z.object({
+export const listingFormSchema = z.object({
 	category: z.enum(CATEGORIES),
 	location: locationSchema,
 	guestCount: z.number().min(1).max(10),
 	roomCount: z.number().min(1).max(10),
 	bathroomCount: z.number().min(1).max(10),
 	imageSrc: z.string(),
-	price: z.number().min(1).max(1000000),
+	price: z.string(),
 	title: z.string().min(5).max(50),
 	description: z.string().min(10).max(200),
 });
