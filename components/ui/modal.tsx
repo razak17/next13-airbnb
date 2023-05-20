@@ -15,6 +15,7 @@ interface ModalProps {
 	footer?: React.ReactElement;
 	actionLabel: string;
 	disabled?: boolean;
+	secondarydisabled?: boolean;
 	secondaryAction?: () => void;
 	secondaryActionLabel?: string;
 }
@@ -28,6 +29,7 @@ const Modal = ({
 	actionLabel,
 	footer,
 	disabled,
+	secondaryDisabled,
 	secondaryAction,
 	secondaryActionLabel,
 }: ModalProps) => {
@@ -57,12 +59,12 @@ const Modal = ({
 	}, [onSubmit, disabled]);
 
 	const handleSecondaryAction = useCallback(() => {
-		if (disabled || !secondaryAction) {
+		if (secondaryDisabled || !secondaryAction) {
 			return;
 		}
 
 		secondaryAction();
-	}, [secondaryAction, disabled]);
+	}, [secondaryAction, disabled, secondaryDisabled]);
 
 	if (!isOpen) {
 		return null;
@@ -169,7 +171,7 @@ const Modal = ({
 								>
 									{secondaryAction && secondaryActionLabel && (
 										<Button
-											disabled={disabled}
+											disabled={secondaryDisabled && disabled}
 											label={secondaryActionLabel}
 											onClick={handleSecondaryAction}
 											outline

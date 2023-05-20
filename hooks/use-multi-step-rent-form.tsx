@@ -1,19 +1,28 @@
 import { ReactElement, useState } from 'react';
 
+export enum STEPS {
+  CATEGORY = 0,
+  LOCATION = 1,
+  INFO = 2,
+  IMAGES = 3,
+  DESCRIPTION = 4,
+  PRICE = 5,
+}
+
 const useMultiStepRentForm = (steps: ReactElement[]) => {
-	const [currentStepIndex, setCurrentStepIndex] = useState(0);
+	const [currentStepIndex, setCurrentStepIndex] = useState(STEPS.CATEGORY);
 
 	function goToNext() {
-		setCurrentStepIndex((i) => {
-			if (i >= steps.length - 1) return i;
-			return i + 1;
+		setCurrentStepIndex((value) => {
+			if (value === STEPS.PRICE) return value;
+			return value + 1;
 		});
 	}
 
 	function goBack() {
-		setCurrentStepIndex((i) => {
-			if (i <= 0) return i;
-			return i - 1;
+		setCurrentStepIndex((value) => {
+			if (value === STEPS.CATEGORY) return value;
+			return value - 1;
 		});
 	}
 
@@ -25,8 +34,8 @@ const useMultiStepRentForm = (steps: ReactElement[]) => {
 		currentStepIndex,
 		step: steps[currentStepIndex],
 		steps,
-		isFirstStep: currentStepIndex === 0,
-		isLastStep: currentStepIndex === steps.length - 1,
+		isFirstStep: currentStepIndex === STEPS.CATEGORY,
+		isLastStep: currentStepIndex === STEPS.PRICE,
 		goTo,
 		goToNext,
 		goBack,
