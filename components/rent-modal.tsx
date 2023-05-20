@@ -1,11 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import { z } from 'zod';
 
 import { Country, rentFormSchema } from '@/lib/validations/rent';
@@ -25,7 +22,6 @@ import Modal from './ui/modal';
 export type RentFormData = z.infer<typeof rentFormSchema>;
 
 const RentModal = () => {
-	const router = useRouter();
 	const rentModal = useRentModal();
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -57,7 +53,6 @@ const RentModal = () => {
 	const roomCount = watch('roomCount');
 	const bathroomCount = watch('bathroomCount');
 	const imageSrc = watch('imageSrc');
-	const price = watch('price');
 	const title = watch('title');
 	const description = watch('description');
 
@@ -74,11 +69,9 @@ const RentModal = () => {
 
 	const {
 		step,
-		steps,
 		currentStepIndex,
 		isFirstStep,
 		isLastStep,
-		goTo,
 		goBack,
 		goToNext,
 	} = useMultiStepRentForm([
@@ -134,20 +127,18 @@ const RentModal = () => {
 		return 'Back';
 	}, [isFirstStep]);
 
-  const isEmpty = useMemo(() => {
-    switch (currentStepIndex) {
-      case STEPS.LOCATION:
-        return !location;
-      case STEPS.IMAGES:
-        return !imageSrc;
-      case STEPS.DESCRIPTION:
-        return !title || !description;
-      default:
-        return false;
-    }
-  }, [currentStepIndex, location, imageSrc, title, description]);
-
-  console.log({currentStepIndex, isEmpty, location})
+	const isEmpty = useMemo(() => {
+		switch (currentStepIndex) {
+			case STEPS.LOCATION:
+				return !location;
+			case STEPS.IMAGES:
+				return !imageSrc;
+			case STEPS.DESCRIPTION:
+				return !title || !description;
+			default:
+				return false;
+		}
+	}, [currentStepIndex, location, imageSrc, title, description]);
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		if (!isLastStep) return goToNext();
@@ -159,7 +150,7 @@ const RentModal = () => {
 			isOpen={rentModal.isOpen}
 			title='Airbnb your home!'
 			actionLabel={actionLabel}
-      onSubmit={isLastStep ? handleSubmit(onSubmit) : goToNext}
+			onSubmit={isLastStep ? handleSubmit(onSubmit) : goToNext}
 			secondaryDisabled={isLoading}
 			secondaryActionLabel={secondaryActionLabel}
 			secondaryAction={isFirstStep ? undefined : goBack}

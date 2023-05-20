@@ -22,6 +22,8 @@ const RegisterModal = () => {
 	const registerModal = useRegisterModal();
 	const loginModal = useLoginModal();
 	const [isLoading, setIsLoading] = useState(false);
+	const [isGitHubLoading, setIsGitHubLoading] = useState(false);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
 	const {
 		register,
@@ -82,23 +84,26 @@ const RegisterModal = () => {
 		</div>
 	);
 
+	const footerContent = (
+		<UserAuthModalFooter
+			register
+			onToggle={onToggle}
+			disabled={isLoading || isGitHubLoading || isGoogleLoading}
+			setIsGitHubLoading={setIsGitHubLoading}
+			setIsGoogleLoading={setIsGoogleLoading}
+		/>
+	);
+
 	return (
 		<Modal
-			disabled={isLoading}
+			disabled={isLoading || isGitHubLoading || isGoogleLoading}
 			isOpen={registerModal.isOpen}
 			title='Register'
 			actionLabel='Register'
 			onClose={registerModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
-			footer={
-				<UserAuthModalFooter
-					register
-					isLoading={isLoading}
-					setIsLoading={setIsLoading}
-					onToggle={onToggle}
-				/>
-			}
+			footer={footerContent}
 		/>
 	);
 };

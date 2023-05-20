@@ -1,13 +1,15 @@
 import { CATEGORIES } from '@/types';
 import * as z from 'zod';
 
-export const locationSchema = z.object({
-	flag: z.string(),
-	label: z.string(),
-	latlng: z.array(z.number()),
-	region: z.string(),
-	value: z.string(),
-}).nullish();
+export const locationSchema = z
+	.object({
+		flag: z.string(),
+		label: z.string(),
+		latlng: z.array(z.number()),
+		region: z.string(),
+		value: z.string(),
+	})
+	.nullish();
 
 export const rentFormSchema = z.object({
 	category: z.enum(CATEGORIES),

@@ -15,7 +15,7 @@ interface ModalProps {
 	footer?: React.ReactElement;
 	actionLabel: string;
 	disabled?: boolean;
-	secondarydisabled?: boolean;
+	secondaryDisabled?: boolean;
 	secondaryAction?: () => void;
 	secondaryActionLabel?: string;
 }
@@ -64,7 +64,7 @@ const Modal = ({
 		}
 
 		secondaryAction();
-	}, [secondaryAction, disabled, secondaryDisabled]);
+	}, [secondaryAction, secondaryDisabled]);
 
 	if (!isOpen) {
 		return null;

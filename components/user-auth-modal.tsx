@@ -1,23 +1,24 @@
-import { Dispatch, SetStateAction } from 'react';
 import { signIn } from 'next-auth/react';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 
 import Button from './ui/button';
 
-interface UserAuthModalFooterProps {
+interface UserAuthModalFooterPrps {
 	register?: boolean;
-	isLoading: boolean;
-	setIsLoading: Dispatch<SetStateAction<boolean>>;
+	disabled: boolean;
+	setIsGitHubLoading: (value: boolean) => void;
+	setIsGoogleLoading: (value: boolean) => void;
 	onToggle: () => void;
 }
 
 const UserAuthModalFooter = ({
 	register,
-	isLoading,
-	setIsLoading,
+	disabled,
+	setIsGitHubLoading,
+	setIsGoogleLoading,
 	onToggle,
-}: UserAuthModalFooterProps) => {
+}: UserAuthModalFooterPrps) => {
 	return (
 		<div className='mt-3 flex flex-col gap-4'>
 			<hr />
@@ -32,20 +33,20 @@ const UserAuthModalFooter = ({
 				<Button
 					outline
 					label='Continue with Google'
-					disabled={isLoading}
+					disabled={disabled}
 					icon={FcGoogle}
 					onClick={() => {
-						setIsLoading(true);
-						return signIn('google');
+						setIsGoogleLoading(true);
+						signIn('google');
 					}}
 				/>
 				<Button
 					outline
 					label='Continue with Github'
-					disabled={isLoading}
+					disabled={disabled}
 					icon={AiFillGithub}
 					onClick={() => {
-						setIsLoading(true);
+						setIsGitHubLoading(true);
 						signIn('github');
 					}}
 				/>
@@ -59,7 +60,7 @@ const UserAuthModalFooter = ({
         '
 			>
 				<p>
-					{register ? 'Already have an account?' : 'First time using Airbnb?'}
+					{register ? 'Already have an account? ' : 'First time using Airbnb? '}
 					<span
 						onClick={onToggle}
 						className='

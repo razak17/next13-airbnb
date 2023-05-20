@@ -54,4 +54,5 @@ Next 13.3.0 breaks next/image in docker. Downgrade to 13.2.4 or use 13.4.2 to fi
 see: [issue](https://github.com/vercel/next.js/issues/48173)
 
 # TODO
+
 - [ ] Store unfinished listing process in local storage

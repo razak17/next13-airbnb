@@ -1,12 +1,12 @@
 import { ReactElement, useState } from 'react';
 
 export enum STEPS {
-  CATEGORY = 0,
-  LOCATION = 1,
-  INFO = 2,
-  IMAGES = 3,
-  DESCRIPTION = 4,
-  PRICE = 5,
+	CATEGORY = 0,
+	LOCATION = 1,
+	INFO = 2,
+	IMAGES = 3,
+	DESCRIPTION = 4,
+	PRICE = 5,
 }
 
 const useMultiStepRentForm = (steps: ReactElement[]) => {

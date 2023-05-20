@@ -24,6 +24,8 @@ const LoginModal = () => {
 	const loginModal = useLoginModal();
 	const registerModal = useRegisterModal();
 	const [isLoading, setIsLoading] = useState(false);
+	const [isGitHubLoading, setIsGitHubLoading] = useState(false);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
 	const {
 		register,
@@ -65,7 +67,7 @@ const LoginModal = () => {
 			<Input
 				id='email'
 				label='Email'
-				disabled={isLoading}
+				disabled={isLoading || isGitHubLoading || isGoogleLoading}
 				errors={errors['email']}
 				{...register('email')}
 			/>
@@ -73,29 +75,32 @@ const LoginModal = () => {
 				id='password'
 				label='Password'
 				type='password'
-				disabled={isLoading}
+				disabled={isLoading || isGitHubLoading || isGoogleLoading}
 				errors={errors['password']}
 				{...register('password')}
 			/>
 		</div>
 	);
 
+	const footerContent = (
+		<UserAuthModalFooter
+			onToggle={onToggle}
+			disabled={isLoading || isGitHubLoading || isGoogleLoading}
+			setIsGitHubLoading={setIsGitHubLoading}
+			setIsGoogleLoading={setIsGoogleLoading}
+		/>
+	);
+
 	return (
 		<Modal
-			disabled={isLoading}
+			disabled={isLoading || isGitHubLoading || isGoogleLoading}
 			isOpen={loginModal.isOpen}
 			title='Login'
 			actionLabel='Login'
 			onClose={loginModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
-			footer={
-				<UserAuthModalFooter
-					isLoading={isLoading}
-					setIsLoading={setIsLoading}
-					onToggle={onToggle}
-				/>
-			}
+			footer={footerContent}
 		/>
 	);
 };

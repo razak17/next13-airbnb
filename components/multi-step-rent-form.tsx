@@ -197,7 +197,7 @@ const RentPriceStep = ({
 			subtitle='How much do you charge per night?'
 		/>
 		<Input
-      min={1}
+			min={1}
 			id='price'
 			label='Price'
 			formatPrice
