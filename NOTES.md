@@ -56,3 +56,4 @@ see: [issue](https://github.com/vercel/next.js/issues/48173)
 # TODO
 
 - [ ] Store unfinished listing process in local storage
+- [ ] Handle listing price validation (rent-modal)

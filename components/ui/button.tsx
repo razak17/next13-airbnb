@@ -3,29 +3,20 @@
 import * as React from 'react';
 import { IconType } from 'react-icons';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	label: string;
-	disabled?: boolean;
 	outline?: boolean;
 	small?: boolean;
 	icon?: IconType;
-	// eslint-disable-next-line no-unused-vars
-	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({
-	label,
-	onClick,
-	disabled,
-	outline,
-	small,
-	icon: Icon,
-}: ButtonProps) => {
-	return (
-		<button
-			disabled={disabled}
-			onClick={onClick}
-			className={`
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ label, outline, small, icon: Icon, ...props }, ref) => {
+		return (
+			<button
+				ref={ref}
+				{...props}
+				className={`
         relative
         w-full
         rounded-lg
@@ -41,20 +32,23 @@ const Button = ({
         ${small ? 'font-light' : 'font-semibold'}
         ${small ? 'border-[1px]' : 'border-2'}
       `}
-		>
-			{Icon && (
-				<Icon
-					size={24}
-					className='
+			>
+				{Icon && (
+					<Icon
+						size={24}
+						className='
             absolute
             left-4
             top-3
           '
-				/>
-			)}
-			{label}
-		</button>
-	);
-};
+					/>
+				)}
+				{label}
+			</button>
+		);
+	}
+);
+
+Button.displayName = 'Button';
 
 export default Button;
