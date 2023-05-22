@@ -1,3 +1,4 @@
+import getListings from '@/lib/listing';
 import UseClient from '@/hooks/use-client';
 import Wrapper from '@/components/ui/wrapper';
 import {
@@ -7,10 +8,10 @@ import {
 	EmptyPlaceholderTitle,
 } from '@/components/empty-placeholder';
 
-export default function Home() {
-	const isEmpty = true;
+export default async function Home() {
+	const listings = await getListings();
 
-	if (isEmpty)
+	if (listings.length === 0) {
 		return (
 			<UseClient>
 				<EmptyPlaceholder>
@@ -23,6 +24,7 @@ export default function Home() {
 				</EmptyPlaceholder>
 			</UseClient>
 		);
+	}
 
 	return (
 		<UseClient>
@@ -40,7 +42,9 @@ export default function Home() {
             2xl:grid-cols-6
           '
 				>
-					<div>Listing Go Here</div>
+					{listings.map((listing) => (
+						<div key={listing.id}>{listing.title}</div>
+					))}
 				</div>
 			</Wrapper>
 		</UseClient>
