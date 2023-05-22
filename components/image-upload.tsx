@@ -6,7 +6,7 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { TbPhotoPlus } from 'react-icons/tb';
 
 declare global {
-	let cloudinary: any;
+	let cloudinary: unknown;
 }
 
 const uploadPreset = 'q6xxxfd8';
