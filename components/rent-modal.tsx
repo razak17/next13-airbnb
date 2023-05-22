@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Country, listingFormSchema } from '@/lib/validations/listing';
 import useMultiStepRentForm, { STEPS } from '@/hooks/use-multi-step-rent-form';

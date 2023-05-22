@@ -8,8 +8,8 @@ import { format } from 'date-fns';
 
 import useCountries from '@/hooks/use-countries';
 
+import HeartButton from './heart-button';
 import Button from './ui/button';
-import HeartButton from './ui/heart-button';
 
 interface ListingCardProps {
 	data: RentListing;

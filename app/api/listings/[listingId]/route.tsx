@@ -26,7 +26,7 @@ export async function DELETE(context: z.infer<typeof routeContextSchema>) {
 			},
 		});
 
-		return new Response('Listing deleted', { status: 204 });
+		return new Response(null, { status: 204 });
 	} catch (error) {
 		if (error instanceof z.ZodError) {
 			return new Response(JSON.stringify(error.issues), { status: 422 });
