@@ -1,4 +1,3 @@
-import getListings from '@/lib/listing';
 import { getCurrentUser } from '@/lib/session';
 import UseClient from '@/hooks/use-client';
 import Wrapper from '@/components/ui/wrapper';
@@ -9,6 +8,7 @@ import {
 	EmptyPlaceholderTitle,
 } from '@/components/empty-placeholder';
 import ListingCard from '@/components/listing-card';
+import { getListings } from '@/lib/listing';
 
 export default async function Home() {
 	const listings = await getListings();
