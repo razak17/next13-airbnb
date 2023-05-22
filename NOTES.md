@@ -13,15 +13,20 @@ Get Client ID and Client Secrets
 
 # Prisma
 
+```bash
 npx prisma db push
 npx prisma generate
+```
 
 # Dependencies
 
 ## Eslint
 
 See: .eslintrc.json
+
+```bash
 pnpm add --save-dev @typescript-eslint/parser eslint eslint-config-next eslint-config-prettier eslint-plugin-tailwindcss
+```
 
 ## Formatters
 
@@ -29,24 +34,32 @@ See: prettier.config.js
 
 ### Prettier
 
+```bash
 pnpm add --save-dev @fsouza/prettierd
+```
 
 ### Tailwind Formatter
 
+```bash
 pnpm add --save-dev prettier-plugin-tailwindcss
+```
 
 ### Import Sorter
 
+```bash
 pnpm add --save-dev @ianvs/prettier-plugin-sort-imports
+```
 
 ### Husky and Commitlint
 
+```bash
 pnpm add --save-dev husky @commitlint/{config-conventional,cli}
 echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
 npx husky install
 npx husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
 npx husky add .husky/pre-commit 'pnpm format && pnpm lint'
 npx husky add .husky/pre-push 'pnpm run build'
+```
 
 # Issues
 
@@ -57,3 +70,5 @@ see: [issue](https://github.com/vercel/next.js/issues/48173)
 
 - [ ] Store unfinished listing process in local storage
 - [ ] Handle listing price validation (rent-modal)
+
+
