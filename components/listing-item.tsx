@@ -68,7 +68,6 @@ const ListingItem = ({
 		setIsLoading(true);
 
 		axios
-      // TODO: Create reservations route
 			.post('/api/reservations', {
 				totalPrice,
 				startDate: dateRange.startDate,

@@ -3,7 +3,7 @@ import * as z from 'zod';
 import { db } from '@/lib/db';
 import { getCurrentUser } from '@/lib/session';
 
-const routeContextSchema = z.object({
+const favoriteListingSchema = z.object({
 	params: z.object({
 		listingId: z.string(),
 	}),
@@ -11,7 +11,7 @@ const routeContextSchema = z.object({
 
 export async function POST(
 	req: Request,
-	context: z.infer<typeof routeContextSchema>
+	context: z.infer<typeof favoriteListingSchema>
 ) {
 	try {
 		const currentUser = await getCurrentUser();
@@ -20,7 +20,7 @@ export async function POST(
 			return new Response('Unauthorized', { status: 403 });
 		}
 
-		const { params } = routeContextSchema.parse(context);
+		const { params } = favoriteListingSchema.parse(context);
 
 		const favoriteIds = [...(currentUser.favoriteIds || [])];
 
@@ -47,7 +47,7 @@ export async function POST(
 
 export async function DELETE(
 	req: Request,
-	context: z.infer<typeof routeContextSchema>
+	context: z.infer<typeof favoriteListingSchema>
 ) {
 	try {
 		const currentUser = await getCurrentUser();
@@ -56,7 +56,7 @@ export async function DELETE(
 			return new Response('Unauthorized', { status: 403 });
 		}
 
-		const { params } = routeContextSchema.parse(context);
+		const { params } = favoriteListingSchema.parse(context);
 
 		let favoriteIds = [...(currentUser.favoriteIds || [])];
 

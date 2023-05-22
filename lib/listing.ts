@@ -1,11 +1,9 @@
-import { db } from '@/lib/db';
 import * as z from 'zod';
 
+import { db } from '@/lib/db';
 
-const routeContextSchema = z.object({
-	params: z.object({
-		listingId: z.string(),
-	}),
+const getListingByIdSchema = z.object({
+	listingId: z.string(),
 });
 
 export async function getListings() {
@@ -26,36 +24,35 @@ export async function getListings() {
 }
 
 export async function getListingById(
-  params: z.infer<typeof routeContextSchema>['params']
+	params: z.infer<typeof getListingByIdSchema>
 ) {
-  try {
-    const { listingId } = params;
+	try {
+		const { listingId } = params;
 
-    const listing = await db.listing.findUnique({
-      where: {
-        id: listingId,
-      },
-      include: {
-        user: true
-      }
-    });
+		const listing = await db.listing.findUnique({
+			where: {
+				id: listingId,
+			},
+			include: {
+				user: true,
+			},
+		});
 
-    if (!listing) {
-      return null;
-    }
+		if (!listing) {
+			return null;
+		}
 
-    return {
-      ...listing,
-      createdAt: listing.createdAt.toString(),
-      user: {
-        ...listing.user,
-        createdAt: listing.user.createdAt.toString(),
-        updatedAt: listing.user.updatedAt.toString(),
-        emailVerified: 
-          listing.user.emailVerified?.toString() || null,
-      }
-    };
-  } catch (error) {
-    throw new Error(error as string);
-  }
+		return {
+			...listing,
+			createdAt: listing.createdAt.toString(),
+			user: {
+				...listing.user,
+				createdAt: listing.user.createdAt.toString(),
+				updatedAt: listing.user.updatedAt.toString(),
+				emailVerified: listing.user.emailVerified?.toString() || null,
+			},
+		};
+	} catch (error) {
+		throw new Error(error as string);
+	}
 }
