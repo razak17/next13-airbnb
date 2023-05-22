@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { Listing, Reservation, User } from '@prisma/client';
 import { IconType } from 'react-icons';
 
 export type AuthenticatedUser = Omit<
@@ -9,6 +9,7 @@ export type AuthenticatedUser = Omit<
 	updatedAt: string;
 	emailVerified: string | null;
 };
+
 export const CATEGORY = [
 	'Beach',
 	'Windmills',
@@ -33,4 +34,18 @@ export type CategoryItem = {
 	label: Category;
 	icon: IconType;
 	description: string;
+};
+
+export type RentListing = Omit<Listing, 'createdAt'> & {
+	createdAt: string;
+};
+
+export type ListingResevation = Omit<
+	Reservation,
+	'createdAt' | 'startDate' | 'endDate' | 'listing'
+> & {
+	createdAt: string;
+	startDate: string;
+	endDate: string;
+	listing: RentListing;
 };

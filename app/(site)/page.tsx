@@ -1,4 +1,5 @@
 import getListings from '@/lib/listing';
+import { getCurrentUser } from '@/lib/session';
 import UseClient from '@/hooks/use-client';
 import Wrapper from '@/components/ui/wrapper';
 import {
@@ -7,9 +8,11 @@ import {
 	EmptyPlaceholderDescription,
 	EmptyPlaceholderTitle,
 } from '@/components/empty-placeholder';
+import ListingCard from '@/components/listing-card';
 
 export default async function Home() {
 	const listings = await getListings();
+	const currentUser = await getCurrentUser();
 
 	if (listings.length === 0) {
 		return (
@@ -43,7 +46,11 @@ export default async function Home() {
           '
 				>
 					{listings.map((listing) => (
-						<div key={listing.id}>{listing.title}</div>
+						<ListingCard
+							currentUser={currentUser}
+							key={listing.id}
+							data={listing}
+						/>
 					))}
 				</div>
 			</Wrapper>
