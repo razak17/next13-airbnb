@@ -1,4 +1,5 @@
 import { getListingById } from '@/lib/listing';
+import { getReservations } from '@/lib/reservation';
 import { getCurrentUser } from '@/lib/session';
 import UseClient from '@/hooks/use-client';
 import {
@@ -18,6 +19,7 @@ interface ListingPageProps {
 const ListingPage = async ({ params }: ListingPageProps) => {
 	const currentUser = await getCurrentUser();
 	const listing = await getListingById(params);
+	const reservations = await getReservations(params);
 
 	if (!listing) {
 		return (
@@ -35,7 +37,11 @@ const ListingPage = async ({ params }: ListingPageProps) => {
 
 	return (
 		<UseClient>
-			<ListingItem listing={listing} currentUser={currentUser} />
+			<ListingItem
+				listing={listing}
+				currentUser={currentUser}
+				reservations={reservations}
+			/>
 		</UseClient>
 	);
 };
