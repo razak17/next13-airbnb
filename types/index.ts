@@ -9,7 +9,7 @@ export type AuthenticatedUser = Omit<
 	updatedAt: string;
 	emailVerified: string | null;
 };
-export const CATEGORIES = [
+export const CATEGORY = [
 	'Beach',
 	'Windmills',
 	'Modern',
@@ -27,9 +27,9 @@ export const CATEGORIES = [
 	'Lux',
 ] as const;
 
-export type Category = (typeof CATEGORIES)[number];
+export type Category = (typeof CATEGORY)[number];
 
-export type CategoryIten = {
+export type CategoryItem = {
 	label: Category;
 	icon: IconType;
 	description: string;

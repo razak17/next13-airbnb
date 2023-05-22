@@ -1,4 +1,4 @@
-import { CategoryIten } from '@/types';
+import { CategoryItem } from '@/types';
 import { BsSnow } from 'react-icons/bs';
 import { FaSkiing } from 'react-icons/fa';
 import {
@@ -15,7 +15,7 @@ import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 
-export const categories: CategoryIten[] = [
+export const categories: CategoryItem[] = [
 	{
 		label: 'Beach',
 		icon: TbBeach,

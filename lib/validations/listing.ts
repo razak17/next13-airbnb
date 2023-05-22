@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@/types';
+import { CATEGORY } from '@/types';
 import * as z from 'zod';
 
 const locationSchema = z
@@ -12,7 +12,7 @@ const locationSchema = z
 	.nullish();
 
 export const listingFormSchema = z.object({
-	category: z.enum(CATEGORIES),
+	category: z.enum(CATEGORY),
 	location: locationSchema,
 	guestCount: z.number().min(1).max(10),
 	roomCount: z.number().min(1).max(10),
