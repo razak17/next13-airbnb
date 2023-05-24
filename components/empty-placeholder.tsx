@@ -60,22 +60,22 @@ export function EmptyPlaceholderDescription({
 interface EmptyPlacholderButtonProps
 	extends React.HTMLAttributes<HTMLButtonElement> {
 	label: string;
-	resetFilter?: boolean;
+	redirect?: string;
 }
 
 export function EmptyPlaceholderButton({
 	label,
-	resetFilter,
-	onClick,
+  redirect = '/',
 	...props
 }: EmptyPlacholderButtonProps) {
 	const router = useRouter();
+
 	return (
 		<div className='mt-4 w-48'>
 			<Button
 				outline
 				label={label}
-				onClick={resetFilter ? () => router.push('/') : onClick}
+				onClick={() => router.push(redirect)}
 				{...props}
 			/>
 		</div>

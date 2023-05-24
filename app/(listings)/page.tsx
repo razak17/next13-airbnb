@@ -23,7 +23,7 @@ export default async function Home() {
 						There are no listings that match your search criteria. Try removing
 						some filters.
 					</EmptyPlaceholderDescription>
-					<EmptyPlaceholderButton label='Remove all filters' resetFilter />
+					<EmptyPlaceholderButton label='Remove all filters' />
 				</EmptyPlaceholder>
 			</UseClient>
 		);
