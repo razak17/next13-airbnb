@@ -9,7 +9,10 @@ const deleteReservationSchema = z.object({
 	}),
 });
 
-export async function DELETE(context: z.infer<typeof deleteReservationSchema>) {
+export async function DELETE(
+  req: Request,
+  context: z.infer<typeof deleteReservationSchema>
+) {
 	try {
 		const { params } = deleteReservationSchema.parse(context);
 

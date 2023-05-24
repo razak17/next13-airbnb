@@ -8,9 +8,9 @@ import {
 	EmptyPlaceholderDescription,
 	EmptyPlaceholderTitle,
 } from '@/components/empty-placeholder';
-import TripItem from '@/components/trip-item';
+import ReservationItem from '@/components/reservation-item';
 
-const TripsPage = async () => {
+const ReservationsPage = async () => {
 	const currentUser = await getCurrentUser();
 
 	if (!currentUser) {
@@ -27,17 +27,16 @@ const TripsPage = async () => {
 		);
 	}
 
-	const reservations = await getReservations({ userId: currentUser.id });
+	const reservations = await getReservations({ authorId: currentUser.id });
 
 	if (reservations.length === 0) {
 		return (
 			<UseClient>
 				<EmptyPlaceholder>
-					<EmptyPlaceholderTitle>No trips found</EmptyPlaceholderTitle>
+					<EmptyPlaceholderTitle>No reservations found</EmptyPlaceholderTitle>
 					<EmptyPlaceholderDescription>
-						Looks like you haven&apos;t reserved any trips yet.
+						Looks like you have no reservations on your properties yet.
 					</EmptyPlaceholderDescription>
-					<EmptyPlaceholderButton label='See available listings' />
 				</EmptyPlaceholder>
 			</UseClient>
 		);
@@ -45,9 +44,9 @@ const TripsPage = async () => {
 
 	return (
 		<UseClient>
-			<TripItem reservations={reservations} currentUser={currentUser} />
+			<ReservationItem reservations={reservations} currentUser={currentUser} />
 		</UseClient>
 	);
 };
 
-export default TripsPage;
+export default ReservationsPage;

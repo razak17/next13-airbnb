@@ -10,12 +10,15 @@ import ListingCard from './listing-card';
 import Heading from './ui/heading';
 import Wrapper from './ui/wrapper';
 
-interface TripsClientProps {
+interface ReservationsClientProps {
 	reservations: ListingResevation[];
 	currentUser?: AuthenticatedUser | null;
 }
 
-const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
+const ReservationsItem = ({
+	reservations,
+	currentUser,
+}: ReservationsClientProps) => {
 	const router = useRouter();
 	const [targetReservationId, setTargetReservationId] = useState('');
 
@@ -41,17 +44,14 @@ const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 
 	return (
 		<Wrapper>
-			<Heading
-				title='Trips'
-				subtitle="Where you've been and where you're going"
-			/>
+			<Heading title='Reservations' subtitle='Bookings on your properties' />
 			<div
 				className='
           mt-10
-          grid 
-          grid-cols-1 
-          gap-8 
-          sm:grid-cols-2 
+          grid
+          grid-cols-1
+          gap-8
+          sm:grid-cols-2
           md:grid-cols-3
           lg:grid-cols-4
           xl:grid-cols-5
@@ -66,7 +66,7 @@ const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 						actionId={reservation.id}
 						onAction={onCancel}
 						disabled={targetReservationId === reservation.id}
-						actionLabel='Cancel reservation'
+						actionLabel='Cancel guest reservation'
 						currentUser={currentUser}
 					/>
 				))}
@@ -75,4 +75,4 @@ const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 	);
 };
 
-export default TripItem;
+export default ReservationsItem;
