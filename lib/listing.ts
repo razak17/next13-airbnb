@@ -2,6 +2,8 @@ import * as z from 'zod';
 
 import { db } from '@/lib/db';
 
+import { getCurrentUser } from './session';
+
 const getListingByIdSchema = z.object({
 	listingId: z.string(),
 });
@@ -52,6 +54,33 @@ export async function getListingById(
 				emailVerified: listing.user.emailVerified?.toString() || null,
 			},
 		};
+	} catch (error) {
+		throw new Error(error as string);
+	}
+}
+
+export async function getFavoriteListings() {
+	try {
+		const currentUser = await getCurrentUser();
+
+		if (!currentUser) {
+			return [];
+		}
+
+		const favorites = await db.listing.findMany({
+			where: {
+				id: {
+					in: [...(currentUser.favoriteIds || [])],
+				},
+			},
+		});
+
+		const formattedFavorites = favorites.map((favorite) => ({
+			...favorite,
+			createdAt: favorite.createdAt.toString(),
+		}));
+
+		return formattedFavorites;
 	} catch (error) {
 		throw new Error(error as string);
 	}
