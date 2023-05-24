@@ -1,4 +1,4 @@
-import { getListings } from '@/lib/listing';
+import { GetListingsParams, getListings } from '@/lib/listing';
 import { getCurrentUser } from '@/lib/session';
 import UseClient from '@/hooks/use-client';
 import Wrapper from '@/components/ui/wrapper';
@@ -10,8 +10,12 @@ import {
 } from '@/components/empty-placeholder';
 import ListingCard from '@/components/listing-card';
 
-export default async function Home() {
-	const listings = await getListings();
+interface HomeProps {
+	searchParams: GetListingsParams;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+	const listings = await getListings(searchParams);
 	const currentUser = await getCurrentUser();
 
 	if (listings.length === 0) {
@@ -57,4 +61,3 @@ export default async function Home() {
 		</UseClient>
 	);
 }
-

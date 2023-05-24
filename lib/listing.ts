@@ -4,13 +4,24 @@ import { db } from '@/lib/db';
 
 import { getCurrentUser } from './session';
 
-const getListingByIdSchema = z.object({
-	listingId: z.string(),
+const getListingsSchema = z.object({
+	userId: z.string().optional(),
 });
 
-export async function getListings() {
+export type GetListingsParams = z.infer<typeof getListingsSchema>;
+
+export async function getListings(params: GetListingsParams) {
 	try {
+		const { userId } = params;
+
+		const query: Partial<GetListingsParams> = {};
+
+		if (userId) {
+			query.userId = userId;
+		}
+
 		const listings = await db.listing.findMany({
+			where: query,
 			orderBy: {
 				createdAt: 'desc',
 			},
@@ -24,6 +35,10 @@ export async function getListings() {
 		throw new Error(error as string);
 	}
 }
+
+const getListingByIdSchema = z.object({
+	listingId: z.string(),
+});
 
 export async function getListingById(
 	params: z.infer<typeof getListingByIdSchema>
