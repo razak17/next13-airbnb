@@ -17,14 +17,14 @@ interface TripsClientProps {
 
 const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 	const router = useRouter();
-	const [reservationId, setReservationId] = useState('');
+	const [targetReservationId, setTargetReservationId] = useState('');
 
 	const onCancel = useCallback(
-		(id: string) => {
-			setReservationId(id);
+		(reservationId: string) => {
+			setTargetReservationId(reservationId);
 
 			axios
-				.delete(`/api/reservations/${id}`)
+				.delete(`/api/reservations/${reservationId}`)
 				.then(() => {
 					toast.success('Reservation cancelled');
 					router.refresh();
@@ -33,7 +33,7 @@ const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 					toast.error(error?.response?.data?.error);
 				})
 				.finally(() => {
-					setReservationId('');
+					setTargetReservationId('');
 				});
 		},
 		[router]
@@ -65,7 +65,7 @@ const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 						reservation={reservation}
 						actionId={reservation.id}
 						onAction={onCancel}
-						disabled={reservationId === reservation.id}
+						disabled={targetReservationId === reservation.id}
 						actionLabel='Cancel reservation'
 						currentUser={currentUser}
 					/>

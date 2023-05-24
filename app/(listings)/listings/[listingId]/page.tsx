@@ -29,7 +29,7 @@ const ListingPage = async ({ params }: ListingPageProps) => {
 					<EmptyPlaceholderDescription>
 						We couldn&apos;t find the listing you were looking for.
 					</EmptyPlaceholderDescription>
-					<EmptyPlaceholderButton label='Go to home' />
+					<EmptyPlaceholderButton label='Go to home page' />
 				</EmptyPlaceholder>
 			</UseClient>
 		);

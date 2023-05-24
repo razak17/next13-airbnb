@@ -14,13 +14,13 @@ export async function POST(
 	context: z.infer<typeof favoriteListingSchema>
 ) {
 	try {
+		const { params } = favoriteListingSchema.parse(context);
+
 		const currentUser = await getCurrentUser();
 
 		if (!currentUser) {
 			return new Response('Unauthorized', { status: 403 });
 		}
-
-		const { params } = favoriteListingSchema.parse(context);
 
 		const favoriteIds = [...(currentUser.favoriteIds || [])];
 

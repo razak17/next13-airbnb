@@ -6,14 +6,14 @@ import { listingFormSchema } from '@/lib/validations/listing';
 
 export async function POST(req: Request) {
 	try {
+		const json = await req.json();
+		const body = listingFormSchema.parse(json);
+
 		const currentUser = await getCurrentUser();
 
 		if (!currentUser) {
 			return new Response('Unauthorized', { status: 403 });
 		}
-
-		const json = await req.json();
-		const body = listingFormSchema.parse(json);
 
 		const listing = await db.listing.create({
 			data: {

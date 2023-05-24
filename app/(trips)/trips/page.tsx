@@ -32,11 +32,10 @@ const TripsPage = async () => {
 	if (reservations.length === 0) {
 		return (
 			<UseClient>
-				<EmptyPlaceholder></EmptyPlaceholder>
 				<EmptyPlaceholder>
 					<EmptyPlaceholderTitle>No trips found</EmptyPlaceholderTitle>
 					<EmptyPlaceholderDescription>
-						Looks like you havent reserved any trips yet.
+						Looks like you haven&apos;t reserved any trips yet.
 					</EmptyPlaceholderDescription>
 					<EmptyPlaceholderButton label='See available listings' />
 				</EmptyPlaceholder>

@@ -12,14 +12,14 @@ const createReservationSchema = z.object({
 
 export async function POST(request: Request) {
 	try {
+		const json = await request.json();
+		const body = createReservationSchema.parse(json);
+
 		const currentUser = await getCurrentUser();
 
 		if (!currentUser) {
 			return new Response('Unauthorized', { status: 403 });
 		}
-
-		const json = await request.json();
-		const body = createReservationSchema.parse(json);
 
 		const listingAndReservation = await db.listing.update({
 			where: {
