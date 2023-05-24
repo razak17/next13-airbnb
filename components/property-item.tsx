@@ -15,7 +15,7 @@ interface TripsClientProps {
 	currentUser?: AuthenticatedUser | null;
 }
 
-const ProperyItem = ({ listings, currentUser }: TripsClientProps) => {
+const PropertyItem = ({ listings, currentUser }: TripsClientProps) => {
 	const router = useRouter();
 	const [targetPropetyId, setTargetPropertyId] = useState('');
 
@@ -74,4 +74,4 @@ const ProperyItem = ({ listings, currentUser }: TripsClientProps) => {
 	);
 };
 
-export default ProperyItem;
+export default PropertyItem;
