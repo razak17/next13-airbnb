@@ -3,7 +3,7 @@ import * as z from 'zod';
 import { db } from '@/lib/db';
 import { getCurrentUser } from '@/lib/session';
 
-const routeContextSchema = z.object({
+const deleteListingSchema = z.object({
 	params: z.object({
 		listingId: z.string(),
 	}),
@@ -11,11 +11,11 @@ const routeContextSchema = z.object({
 
 export async function DELETE(
   req: Request,
-  context: z.infer<typeof routeContextSchema>
+  context: z.infer<typeof deleteListingSchema>
 ) {
 	try {
 		// Validate the route params.
-		const { params } = routeContextSchema.parse(context);
+		const { params } = deleteListingSchema.parse(context);
 
 		// Check if the user has access to this listing.
 		if (!(await verifyCurrentUserHasAccessToListing(params.listingId))) {

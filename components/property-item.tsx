@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { AuthenticatedUser, RentListing } from '@/types';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
@@ -15,12 +16,27 @@ interface TripsClientProps {
 }
 
 const ProperyItem = ({ listings, currentUser }: TripsClientProps) => {
+	const router = useRouter();
 	const [targetPropetyId, setTargetPropertyId] = useState('');
 
 	const onDelete = useCallback(
 		(listingId: string) => {
 			setTargetPropertyId(listingId);
-		}
+
+			axios
+				.delete(`/api/listings/${listingId}`)
+				.then(() => {
+					toast.success('Listing deleted');
+					router.refresh();
+				})
+				.catch((error) => {
+					toast.error('Something went wrong.');
+				})
+				.finally(() => {
+					setTargetPropertyId('');
+				});
+		},
+		[router]
 	);
 
 	return (

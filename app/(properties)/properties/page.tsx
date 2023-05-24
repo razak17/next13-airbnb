@@ -37,7 +37,6 @@ const PropertiesPage = async () => {
 					<EmptyPlaceholderDescription>
 						Looks like you don&apos;t have any properties yet.
 					</EmptyPlaceholderDescription>
-					<EmptyPlaceholderButton label='See available listings' />
 				</EmptyPlaceholder>
 			</UseClient>
 		);
