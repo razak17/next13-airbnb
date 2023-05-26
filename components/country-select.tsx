@@ -7,7 +7,7 @@ import useCountries from '@/hooks/use-countries';
 
 interface CountrySelectProps {
 	placeholder: string;
-	value?: Country;
+	value?: Country | null;
 	// eslint-disable-next-line no-unused-vars
 	onChange: (value: Country) => void;
 }
