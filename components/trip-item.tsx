@@ -29,7 +29,7 @@ const TripItem = ({ reservations, currentUser }: TripsClientProps) => {
 					toast.success('Reservation cancelled');
 					router.refresh();
 				})
-				.catch((error) => {
+				.catch(() => {
 					toast.error('Something went wrong.');
 				})
 				.finally(() => {

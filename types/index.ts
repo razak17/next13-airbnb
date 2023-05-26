@@ -49,3 +49,13 @@ export type ListingResevation = Omit<
 	endDate: string;
 	listing: RentListing;
 };
+
+export type SearchQuery = {
+	locationValue: string;
+	category?: Category;
+	guestCount: number;
+	roomCount: number;
+	bathroomCount: number;
+	startDate?: string;
+	endDate?: string;
+};

@@ -29,7 +29,7 @@ const PropertyItem = ({ listings, currentUser }: TripsClientProps) => {
 					toast.success('Listing deleted');
 					router.refresh();
 				})
-				.catch((error) => {
+				.catch(() => {
 					toast.error('Something went wrong.');
 				})
 				.finally(() => {

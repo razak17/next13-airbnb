@@ -10,8 +10,8 @@ const deleteListingSchema = z.object({
 });
 
 export async function DELETE(
-  req: Request,
-  context: z.infer<typeof deleteListingSchema>
+	req: Request,
+	context: z.infer<typeof deleteListingSchema>
 ) {
 	try {
 		// Validate the route params.

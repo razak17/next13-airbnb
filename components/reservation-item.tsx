@@ -32,7 +32,7 @@ const ReservationsItem = ({
 					toast.success('Reservation cancelled');
 					router.refresh();
 				})
-				.catch((error) => {
+				.catch(() => {
 					toast.error('Something went wrong.');
 				})
 				.finally(() => {

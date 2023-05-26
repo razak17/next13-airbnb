@@ -3,9 +3,9 @@
 import { default as ReactSelect } from 'react-select';
 
 import { Country } from '@/lib/validations/listing';
+import useCountries from '@/hooks/use-countries';
 
 interface CountrySelectProps {
-	options: Country[];
 	placeholder: string;
 	value?: Country;
 	// eslint-disable-next-line no-unused-vars
@@ -14,10 +14,12 @@ interface CountrySelectProps {
 
 const CountrySelect = ({
 	value,
-	options,
 	onChange,
 	placeholder,
 }: CountrySelectProps) => {
+	const { getAll } = useCountries();
+	const options = getAll();
+
 	return (
 		<div>
 			<ReactSelect

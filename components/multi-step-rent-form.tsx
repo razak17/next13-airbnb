@@ -7,7 +7,6 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { categories } from '@/config/categories';
 import { Country } from '@/lib/validations/listing';
-import useCountries from '@/hooks/use-countries';
 
 import CountrySelect from './country-select';
 import ImageUpload from './image-upload';
@@ -58,13 +57,10 @@ const RentLocationStep = ({
 	location,
 	onChange,
 }: {
-	location?: Country;
+	location?: Country | null;
 	// eslint-disable-next-line no-unused-vars
 	onChange: (value: Country) => void;
 }) => {
-	const { getAll } = useCountries();
-	const options = getAll();
-
 	const Map = useMemo(
 		() =>
 			dynamic(() => import('./map'), {
@@ -83,7 +79,6 @@ const RentLocationStep = ({
 			<CountrySelect
 				placeholder='Select Country'
 				value={location}
-				options={options}
 				onChange={onChange}
 			/>
 			<Map center={location?.latlng} />

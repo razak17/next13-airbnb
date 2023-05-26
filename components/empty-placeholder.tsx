@@ -65,7 +65,7 @@ interface EmptyPlacholderButtonProps
 
 export function EmptyPlaceholderButton({
 	label,
-  redirect = '/',
+	redirect = '/',
 	...props
 }: EmptyPlacholderButtonProps) {
 	const router = useRouter();
