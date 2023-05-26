@@ -15,7 +15,7 @@ const count = z
 const getListingsSchema = z.object({
 	userId: z.string().optional(),
 	locationValue: z.string().optional(),
-	category: z.enum(CATEGORY),
+	category: z.enum(CATEGORY).optional(),
 	startDate: z.string().optional(),
 	endDate: z.string().optional(),
 	guestCount: count,
