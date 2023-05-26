@@ -33,8 +33,12 @@ const Search = () => {
 
 			if (diff === 0) {
 				diff = 1;
+			}
+
+			if (diff === 1) {
 				return `${diff} Day`;
 			}
+
 			return `${diff} Days`;
 		}
 		return 'Any Week';
